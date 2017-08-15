@@ -21,10 +21,16 @@ class App extends Component {
   componentDidMount() {
     this.firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('SIGNED IN:', user);
-        this.setState({auth: {user: user, authService: this.firebase.auth.bind(this.firebase)}});
+        user.getIdToken().then((id_token) => {
+          this.setState({
+            auth: {
+              user: user,
+              authService: this.firebase.auth.bind(this.firebase),
+              token: id_token
+            }
+          });
+        });
       } else {
-        console.log('NO SIGNED IN USER');
         this.setState({auth: {authService: this.firebase.auth.bind(this.firebase)}});
       }
     });
