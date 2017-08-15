@@ -3,8 +3,8 @@ import { Button, Modal } from 'react-bootstrap';
 import { EmailLogin } from './EmailLogin'
 
 class LoginModal extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = { showModal: false}
   }
 
@@ -20,9 +20,9 @@ class LoginModal extends Component {
   }
   render () {
     return (
-        <Modal show={this.state.showModal} onHide={this.close}>
+        <Modal show={this.state.showModal} onHide={this.close} className="col-sm-3">
           <Modal.Body className="text-center">
-            <EmailLogin />
+            <EmailLogin className="form" auth={this.props.auth} />
             <ul className="list-inline">
               <li><a href="/signup/">Sign up</a></li>
               <li>|</li>

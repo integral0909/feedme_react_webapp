@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { HelpBlock } from 'react-bootstrap';
+
 
 class AbstractInput extends Component {
   constructor(props) {
@@ -11,13 +13,33 @@ class AbstractInput extends Component {
   validator(value) {
     return [value, null, null]
   }
-  handleChange = (e) => {
-    if (typeof this.validator === 'function') {
-      let r = this.validator(e.target.value);
-      this.setState({value: r[0], status: r[1], feedback: r[2]});
-    } else {
-      this.setState({value: e.target.value, status: null, feedback: null})
+  getFeedbackBlock() {
+    let feedbackBlock = null;
+    if (this.state.feedback) {
+      feedbackBlock = (
+          <HelpBlock>
+            <ul className="list-inline">
+              {this.state.feedback.split('\n').map((item) => {
+                return (<li>{item}</li>)
+              })}
+            </ul>
+          </HelpBlock>
+      )
     }
+    return feedbackBlock
+  }
+  handleChange = (e) => {
+    const target = e.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    let status = null;
+    let feedback = null;
+    if (typeof this.validator === 'function') {
+      let r = this.validator(value);
+      status = r[1];
+      feedback = r[2];
+    }
+    this.setState({feedback: feedback});
+    this.props.onChange(this.props.name, value, status);
   }
 }
 

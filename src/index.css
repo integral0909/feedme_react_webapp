@@ -21,3 +21,25 @@ a {
   color: #E73D57;
   text-decoration: none;
 }
+.modal-open .modal {
+  margin: auto;
+}
+.modal.in .modal-dialog {
+  width: 100%;
+}
+
+.btn-red {
+  background-color: #E73D57;
+  color: #FFF;
+}
+.btn-red:hover,
+.btn-red:active,
+.btn-red:focus {
+  color: #f1f1f1;
+  background-color: #df203d;
+}
+
+.modal-form {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

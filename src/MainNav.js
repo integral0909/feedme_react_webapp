@@ -6,14 +6,21 @@ import { LoginModal } from './LoginModal'
 
 
 class MainNav extends Component {
-  login = () => {
-    console.log('Login', this);
+  openLogin = () => {
     this.refs.loginModal.toggle()
   }
   render () {
+    let loginBlock = null;
+    if (!this.props.auth.user) {
+      loginBlock = (
+      <Navbar.Form pullRight>
+        <LoginModal ref="loginModal" auth={this.props.auth} />
+        <Button bsStyle="default" onClick={this.openLogin}>Login</Button>
+      </Navbar.Form>
+      )
+    }
     return (
         <Navbar inverse fixedTop className="navbar-red">
-          <LoginModal ref="loginModal" />
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/"><img src={logo} alt="Feedmee" /></a>
@@ -31,9 +38,7 @@ class MainNav extends Component {
               <MenuItem divider />
               <MenuItem eventKey={3.4}>Separated link</MenuItem>
             </NavDropdown>
-            <Navbar.Form pullRight>
-              <Button bsStyle="default" onClick={this.login}>Login</Button>
-            </Navbar.Form>
+            {loginBlock}
           </Nav>
         </Navbar>
     );
