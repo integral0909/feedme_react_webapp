@@ -2,7 +2,7 @@ import React, {  } from 'react';
 import { AbstractForm } from './AbstractForm'
 import { TextInput } from './TextInput';
 import { PasswordInput } from './PasswordInput';
-import { LoginService } from './services/LoginService';
+import { LoginService } from '../services/LoginService';
 import { Button } from 'react-bootstrap';
 
 class EmailLogin extends AbstractForm {

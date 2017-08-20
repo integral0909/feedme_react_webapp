@@ -13,16 +13,16 @@ function validatorBase(value, validation=null, feedback='', worker) {
 function lengthValidator(value, validation, feedback, minLength=8, preferredLength=10) {
   return validatorBase(value, validation, feedback, () => {
     const length = value.length;
-    const lengthWarn = (feedback || '')+'Recommended length > '+preferredLength+'\n';
-    const lengthError = (feedback || '')+'Minimum length: '+minLength+'\n';
+    const lengthWarn = `${feedback || ''}Recommended length > ${preferredLength}\n`;
+    const lengthError = `${feedback || ''}Minimum length: ${minLength}\n`;
     if (length > preferredLength) return [value, 'success', feedback];
     else if (length > minLength) return [value, 'warning', lengthWarn];
     else if (length > 0) return [value, 'error', lengthError];
   });
 }
 function mixedCharactersValidator (value, validation, feedback) {
-  const mixedCharErr = (feedback || '')+'Must include at least one number.'+'\n';
-  const mixedCaseWarn = (feedback || '')+'Including lower AND uppercase letters is recommended.';
+  const mixedCharErr = `${feedback || ''}Must include at least one number.\n`;
+  const mixedCaseWarn = `${feedback || ''}Including lower AND uppercase letters is recommended.\n`;
   return validatorBase(value, validation, feedback, () => {
     const has_lower = /[a-z]/.test(value);
     const has_upper = /[A-Z]/.test(value);
@@ -33,7 +33,7 @@ function mixedCharactersValidator (value, validation, feedback) {
   });
 }
 function repetitionValidator(value, validation, feedback) {
-  const repErr = (feedback || '')+'Repeating digits or characters is not recommended. e.g. "11123"'
+  const repErr = `${feedback || ''}Repeating digits or characters is not recommended. e.g. "11123"\n`;
   return validatorBase(value, validation, feedback, () => {
     const has_dupe_alpha = (/([a-z])\2/i).test(value);
     const has_dupe_digit = /[0-9]\2/.test(value);
@@ -43,7 +43,7 @@ function repetitionValidator(value, validation, feedback) {
   })
 }
 function commonPasswordValidator(value, validation, feedback) {
-  const pwError = (feedback || '')+"You've used a common password, please pick another.\n";
+  const pwError = `${feedback || ''}You've used a common password, please pick another.\n`;
   return validatorBase(value, validation, feedback, () => {
     let pws = commonPasswords;
     if (pws.some(function(p) { return value.indexOf(p) >= 0; })) {

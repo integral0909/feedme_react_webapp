@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { Grid, Jumbotron, Button } from 'react-bootstrap';
-import { MainNav } from './MainNav'
-import './App.css';
-import { app, auth, initializeApp } from 'firebase';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+import { MainNav } from './components/MainNav';
+import {
+  ImpactPage, SearchPage
+} from "./pages/MainPages";
+import { initializeApp } from 'firebase';
+import {RecipeRoutes} from "./components/RecipesRoutes";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    // Initialize Firebase
     this.firebase = initializeApp({
       apiKey: "AIzaSyDJdcBZSwLlpWENN5oWZYQVZL0u7ZPSzhc",
       authDomain: "feedmee-appsppl-dev.firebaseapp.com",
@@ -37,26 +42,16 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <MainNav auth={this.state.auth}></MainNav>
-        <Jumbotron>
-          <Grid>
-            <h1>Welcome to React</h1>
-            <p>
-              <Button
-                  bsStyle="success"
-                  bsSize="large"
-                  href="http://react-bootstrap.github.io/components.html"
-                  target="_blank">
-                View React Bootstrap Docs
-              </Button>
-            </p>
-          </Grid>
-        </Jumbotron>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="Feedmee-App">
+          <MainNav auth={this.state.auth} />
+          <Route exact path="/" component={SearchPage}/>
+          <Route path="/impact" component={ImpactPage}/>
+          <Route path="/recipes" render={({match, location}) => {
+            return <RecipeRoutes auth={this.state.auth} match={match} />
+          }} />
+        </div>
+      </Router>
     );
   }
 }
