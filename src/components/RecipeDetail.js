@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import '../css/Cards.css';
 import {extractHostname, secondsToDisplayTime} from "../utils";
-import {ShareGroup} from "./ShareGroup"
+import {ShareGroup} from "./ShareGroup";
+import {AspectConstrainedImage} from "./AspectConstrainedImage";
+import {SaveButton} from "./SaveButton";
 
 class RecipeDetail extends Component {
   render() {
@@ -15,9 +16,11 @@ class RecipeDetail extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-10">
-              <div className="card bordered">
+              <div className="card bordered padded margin-top-lg">
                 <div className="row">
-                  <img src={this.props.image_url} alt={this.props.name} className="img-responsive"/>
+                  <AspectConstrainedImage
+                      imageUrl={this.props.image_url} className="margin-bottom"
+                      alt={this.props.name} ratio="16:9" />
                 </div>
                 <div className="row">
                   <div className="col-sm-6 bordered-right">
@@ -35,32 +38,35 @@ class RecipeDetail extends Component {
                   <div className="col-sm-6">
                     <h3>Share recipe</h3>
                     <ButtonToolbar>
-                      <ShareGroup pageUrl={pageUrl} />
+                      <ShareGroup url={pageUrl} />
                       <ButtonGroup>
-                        <Button>{this.props.saved ? 'Unsave' : 'Save' }</Button>
+                        <SaveButton saved={this.props.saved} type="recipe"
+                                    pg_id={this.props.pg_id} auth={this.props.auth} />
                       </ButtonGroup>
                     </ButtonToolbar>
                   </div>
                 </div>
               </div>
-              <div className="card bordered">
+              <div className="card bordered padded">
                 <div className="row">
                   <div className="col-sm-7 bordered-right">
-                    <div className="col-xs-3">
-                      <strong>{prepTime}</strong><br />
-                      <small className="text-muted">PREP TIME</small>
-                    </div>
-                    <div className="col-xs-3">
-                      <strong>{cookTime}</strong><br />
-                      <small className="text-muted">COOK TIME</small>
-                    </div>
-                    <div className="col-xs-3">
-                      <strong>{this.props.servings}</strong><br />
-                      <small className="text-muted">SERVINGS</small>
-                    </div>
-                    <div className="col-xs-3">
-                      <strong>{this.props.difficulty}</strong><br />
-                      <small className="text-muted">DIFFICULTY</small>
+                    <div className="row">
+                      <div className="col-xs-3">
+                        <strong>{prepTime}</strong><br />
+                        <small className="text-muted">PREP TIME</small>
+                      </div>
+                      <div className="col-xs-3">
+                        <strong>{cookTime}</strong><br />
+                        <small className="text-muted">COOK TIME</small>
+                      </div>
+                      <div className="col-xs-3">
+                        <strong>{this.props.servings}</strong><br />
+                        <small className="text-muted">SERVINGS</small>
+                      </div>
+                      <div className="col-xs-3">
+                        <strong>{this.props.difficulty}</strong><br />
+                        <small className="text-muted">DIFFICULTY</small>
+                      </div>
                     </div>
                   </div>
                   <div className="col-sm-5">

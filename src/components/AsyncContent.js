@@ -1,20 +1,7 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
 import 'whatwg-fetch';
-
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response
-  } else {
-    let error = new Error(response.json().detail);
-    error.response = response;
-    throw error
-  }
-}
-
-function parseJSON(response) {
-  return response.json()
-}
+import {get} from "../services/ApiService";
 
 class AsyncContent extends Component {
   constructor(props) {
@@ -27,7 +14,7 @@ class AsyncContent extends Component {
       prevPage: null,
       results: [],
       totalResourceCount: 0
-    }
+    };
   }
   componentDidMount = () => {
     if (this.props.auth.token) {
@@ -40,6 +27,8 @@ class AsyncContent extends Component {
     }
   };
   handleManyResults(json) {
+    /* Endpoints which list many results will wrap those results in a meta object
+      and store the results in a results property. */
     let results = json.results;
     if (this.props.mergeResults) {
       results = this.state.results.concat(results);
@@ -56,15 +45,10 @@ class AsyncContent extends Component {
   }
   requestResource = (props) => {
     this.setState({loading: true, didLoad: false});
-    let searchStr = props.searchParams ? props.searchParams.toString() : '';
-    fetch(`${props.host}${props.resource}?${searchStr}`, {
-      headers: {'Authorization': `Bearer ${props.auth.token}`}
-    }).then(checkStatus).then(parseJSON).then((json) => {
-      return json.results ? this.handleManyResults(json) : this.handleOneResult(json);
-    }).catch((ex) => {
-      console.error('Request failed:', ex);
-      this.setState({didLoad: false, loading: false, error: true})
-    });
+    get(props.resource, props.searchParams, props.auth.token)
+        .then((json) => {
+          return json.results ? this.handleManyResults(json) : this.handleOneResult(json);
+      }).catch((ex) => this.setState({didLoad: false, loading: false, error: true}));
   };
   getLoadingSpinner = (isLoading, type, color, width) => {
     return isLoading ? <ReactLoading type={type} color={color} width={width} /> : null;

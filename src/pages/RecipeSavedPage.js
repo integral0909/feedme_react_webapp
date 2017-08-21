@@ -13,8 +13,8 @@ class RecipeSavedPage extends Component {
             <div className="col-sm-10">
               <AsyncContent
                   auth={this.props.auth}
-                  host='http://localhost:8000'
-                  resource='/api/recipes/'
+                  host={process.env.REACT_APP_HOST}
+                  resource='recipes'
                   searchParams={new URLSearchParams('?saved=true')}
                   mergeResults
                   component={RecipeCard}

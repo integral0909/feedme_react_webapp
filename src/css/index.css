@@ -51,6 +51,22 @@ a {
   color: #f1f1f1;
   background-color: #df203d;
 }
+.btn-red-hollow,
+button.btn.btn-default.btn-red-hollow {
+  background-color: #FFF;
+  color: #E73D57;
+  border: 1px solid #E73D57;
+}
+.btn-red-hollow:hover,
+.btn-red-hollow:active,
+.btn-red-hollow:focus,
+button.btn.btn-default.btn-red-hollow:hover,
+button.btn.btn-default.btn-red-hollow:active,
+button.btn.btn-default.btn-red-hollow:focus {
+  background-color: #FFF;
+  color: #df203d;
+  border: 1px solid #df203d;
+}
 
 .modal-form {
   margin-top: 15px;
@@ -97,6 +113,18 @@ a {
 }
 .bordered-right {
   border-right: 1px solid #D4D4D4;
+}
+.margin-top {
+  margin-top: 25px;
+}
+.margin-bottom {
+  margin-bottom: 25px;
+}
+.margin-top-lg {
+  margin-top: 50px;
+}
+.margin-bottom-lg {
+  margin-bottom: 50px;
 }
 @media (max-width: 767px) {
 

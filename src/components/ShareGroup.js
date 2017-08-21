@@ -1,18 +1,22 @@
 import React, {Component} from 'react';
 import {ButtonGroup, Button} from 'react-bootstrap';
+import {FacebookShareButton} from "./FacebookShareButton"
 
 class ShareGroup extends Component {
-  handleFacebookClick = (e) => {
-    FB.ui({method:'share',href: this.props.pageUrl},function(response){});
-  }
   render() {
     return (
         <ButtonGroup>
-          <Button data-share-url={this.props.pageUrl} onClick={this.handleFacebookClick}>
-            <i className="fa fa-facebook"/>
-          </Button>
+          <FacebookShareButton url={this.props.url}>
+              <i className="fa fa-facebook"/>
+          </FacebookShareButton>
           <Button>
             <i className="fa fa-twitter"/>
+          </Button>
+          <Button>
+            <i className="fa fa-google-plus"/>
+          </Button>
+          <Button>
+            <i className="fa fa-linkedin"/>
           </Button>
           <Button>
             <i className="fa fa-envelope"/>
