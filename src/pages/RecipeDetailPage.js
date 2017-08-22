@@ -10,12 +10,12 @@ class RecipeDetailPage extends Component {
     if (this.props.recipe) {
       content = <RecipeDetail {...this.props.recipe} auth={this.props.auth} />;
     } else {
-      let resourceUrl = `recipes/${this.props.match.params.id}`;
+      let resource = `recipes/${this.props.match.params.id}`;
       content = (
           <AsyncContent
               auth={this.props.auth}
               host={process.env.REACT_APP_HOST}
-              resource={resourceUrl}
+              resource={resource}
               component={RecipeDetail}
               extraProps={{auth: this.props.auth}} />
       )

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 import ReactLoading from 'react-loading';
-import 'whatwg-fetch';
 import {post} from "../services/ApiService";
 
 
@@ -23,20 +22,23 @@ class SaveButton extends Component {
     this.sendSaveState();
     this.setState({loading: true});
   };
+  getLoadingIndicator(bgIsWhite) {
+    let color =  bgIsWhite ? '#E73D57' : '#FFF';
+    return <ReactLoading type="bubbles" color={color} width="23px" height="20px" />
+  }
   render() {
-    let text = 'Save';
+    let content = <span><i className="fa fa-heart"/> Save</span>;
     let classes = this.props.className || '';
     if (this.state.saved) {
-      text = 'Unsave';
+      content = <span><i className="fa fa-heart-o"/> Unsave</span>;
       classes = `${classes} btn-red-hollow`;
     }
     if (this.state.loading) {
-      let color = classes.indexOf('btn-red-hollow') !== -1 ? '#E73D57' : '#FFF';
-      text = <ReactLoading type="bubbles" color={color} width="23px" height="20px" />
+      content = this.getLoadingIndicator((classes.indexOf('btn-red-hollow') !== -1))
     }
     return (
         <Button className={classes} onClick={this.handleClick}>
-          {text}
+          {content}
         </Button>
     )
   }

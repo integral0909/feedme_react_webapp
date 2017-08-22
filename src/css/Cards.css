@@ -12,6 +12,7 @@
 .card h3 {
   font-size: 20px;
   font-weight:bold;
+  margin-top: 0;
 }
 .card-row {
   margin-top: 20px;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
-import 'whatwg-fetch';
 import {get} from "../services/ApiService";
 
 class AsyncContent extends Component {
@@ -55,7 +54,7 @@ class AsyncContent extends Component {
   };
   render() {
     let DynamicComponent = this.props.component;
-    let content = (<h2>Log in required</h2>);
+    let content = (<h2 className="text-center">Log in required</h2>);
     let loading = this.getLoadingSpinner(this.state.loading, 'bubbles', '#E73D57', '120px');
     if (this.props.auth.user) {
       if (this.state.results.length) {

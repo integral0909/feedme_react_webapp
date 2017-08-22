@@ -1,0 +1,26 @@
+.reviewer ul > li > .fa-star-o {
+  color: #9B9B9B;
+  font-size: 22px;
+}
+.reviewer ul > li > .fa-star {
+  color: #FFC300;
+  font-size: 22px;
+}
+.reviewer ul > li {
+  font-size: 20px;
+  cursor: pointer;
+}
+.reviewer ul {
+  margin-bottom: 0;
+}
+.reviewer p {
+  margin-bottom: 0;
+}
+.spin > li {
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0%  {-webkit-transform: rotate(0deg);}
+  100% {-webkit-transform: rotate(360deg);}
+}

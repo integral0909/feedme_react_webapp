@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import {Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
 import '../css/Cards.css';
-import {extractHostname, secondsToDisplayTime} from "../utils";
+import {extractHostname} from "../utils";
 import {ShareGroup} from "./ShareGroup";
 import {AspectConstrainedImage} from "./AspectConstrainedImage";
 import {SaveButton} from "./SaveButton";
+import {RecipePropertyRow} from "./RecipePropertyRow";
+import {Reviewer} from "./Reviewer";
+import {get} from '../services/ApiService';
+import {RatingsSummary} from "./RatingsSummary";
+import {IngredientList} from "./IngredientList";
+import {DownloadCard} from "./DownloadCard";
 
 class RecipeDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {rating: 0, userRating: 0, ratingsLoading: true}
+  }
+  componentDidMount = () => {
+    get(`recipes/${this.props.pg_id}/ratings`, null,
+        this.props.auth.token).then((data) => {
+      this.setState({
+        userRating: data.user_rating, rating: data.rating,
+        ratingsLoading: false, ratingsCount: data.ratings_count
+      })
+    }).catch((ex) => {console.error(ex)});
+  };
+  handleRating = (newRating) => {
+    this.setState({userRating: newRating, ratingsLoading: false})
+  };
   render() {
     let hostName = extractHostname(this.props.source_url);
-    let prepTime = secondsToDisplayTime(this.props.prep_time_seconds);
-    let cookTime = secondsToDisplayTime(this.props.cook_time_seconds);
-    let pageUrl = `https://www.feedmeeapp.com/recipes/${this.props.pg_id}`;
+    let pageUrl = `https://www.feedmeeapp.com/recipe/${this.props.pg_id}`;
     return (
         <div className="container">
           <div className="row">
@@ -19,8 +39,12 @@ class RecipeDetail extends Component {
               <div className="card bordered padded margin-top-lg">
                 <div className="row">
                   <AspectConstrainedImage
-                      imageUrl={this.props.image_url} className="margin-bottom"
-                      alt={this.props.name} ratio="16:9" />
+                      imageUrl={this.props.image_url}
+                      className="margin-bottom ratings-summary-parent"
+                      alt={this.props.name} ratio="16:9">
+                    <RatingsSummary rating={this.state.rating}
+                                    ratingsCount={this.state.ratingsCount}/>
+                  </AspectConstrainedImage>
                 </div>
                 <div className="row">
                   <div className="col-sm-6 bordered-right">
@@ -35,10 +59,10 @@ class RecipeDetail extends Component {
                       </ul>
                     </p>
                   </div>
-                  <div className="col-sm-6">
-                    <h3>Share recipe</h3>
+                  <div className="col-sm-6 margin-top" style={{  }}>
+                    <strong>Share recipe</strong>
                     <ButtonToolbar>
-                      <ShareGroup url={pageUrl} />
+                      <ShareGroup url={pageUrl} title={this.props.name} />
                       <ButtonGroup>
                         <SaveButton saved={this.props.saved} type="recipe"
                                     pg_id={this.props.pg_id} auth={this.props.auth} />
@@ -50,30 +74,42 @@ class RecipeDetail extends Component {
               <div className="card bordered padded">
                 <div className="row">
                   <div className="col-sm-7 bordered-right">
-                    <div className="row">
-                      <div className="col-xs-3">
-                        <strong>{prepTime}</strong><br />
-                        <small className="text-muted">PREP TIME</small>
-                      </div>
-                      <div className="col-xs-3">
-                        <strong>{cookTime}</strong><br />
-                        <small className="text-muted">COOK TIME</small>
-                      </div>
-                      <div className="col-xs-3">
-                        <strong>{this.props.servings}</strong><br />
-                        <small className="text-muted">SERVINGS</small>
-                      </div>
-                      <div className="col-xs-3">
-                        <strong>{this.props.difficulty}</strong><br />
-                        <small className="text-muted">DIFFICULTY</small>
-                      </div>
-                    </div>
+                    <RecipePropertyRow
+                        prepTimeSeconds={this.props.prep_time_seconds}
+                        cookTimeSeconds={this.props.cook_time_seconds}
+                        servings={this.props.servings}
+                        difficulty={this.props.difficulty}
+                    />
                   </div>
                   <div className="col-sm-5">
-
+                    <Reviewer subject="recipe" rating={this.state.userRating}
+                              auth={this.props.auth} pg_id={this.props.pg_id}
+                              handleUpdate={this.handleRating}
+                              loading={this.state.ratingsLoading}
+                    />
                   </div>
                 </div>
               </div>
+              <div className="card bordered padded">
+                <div className="row">
+                  <div className="col-sm-6">
+                    <h3>Ingredients</h3>
+                    <IngredientList ingredients={this.props.ingredients} />
+                  </div>
+                  <div className="col-sm-6">
+                    <h3>Instructions</h3>
+                    <p>Recipe instructions from <a href={this.props.source_url} target="_blank">{hostName}</a></p>
+                    <Button href={this.props.source_url} target="_blank" block
+                            bsStyle="danger" bsSize="large" className="btn-red">View Instructions</Button>
+                    <div className="card bordered border-dashed padded margin-top">
+                      <p>This recipe was originally from <a href={this.props.source_url} target="_blank">{hostName}</a>.</p>
+                      <p>You can’t view the recipe on Feedmee because we respect the original author and prefer to refer you to their sites. Read more.</p>
+                      <p>If you are the original author, you can claim your profile now & contribute.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <DownloadCard />
             </div>
           </div>
         </div>
