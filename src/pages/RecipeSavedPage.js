@@ -18,7 +18,7 @@ class RecipeSavedPage extends Component {
                   searchParams={new URLSearchParams('?saved=true')}
                   mergeResults
                   component={RecipeCard}
-                  extraProps={{saved: true}}
+                  extraProps={{saved: true, auth: this.props.auth}}
               />
             </div>
           </div>

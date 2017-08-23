@@ -50,7 +50,13 @@ class AsyncContent extends Component {
       }).catch((ex) => this.setState({didLoad: false, loading: false, error: true}));
   };
   getLoadingSpinner = (isLoading, type, color, width) => {
-    return isLoading ? <ReactLoading type={type} color={color} width={width} /> : null;
+    return isLoading ? <ReactLoading type={type} color={color} width={width}
+                                     className="center-block" /> : null;
+  };
+  unmountChildHandler = (key) => {
+    let newResults = Array.from(this.state.results);
+    newResults.splice(key, 1); // Could save return value here for "Undo" feature
+    this.setState({results: newResults})
   };
   render() {
     let DynamicComponent = this.props.component;
@@ -61,7 +67,10 @@ class AsyncContent extends Component {
         content = (
             <div>
               {this.state.results.map((item, idx) => {
-                return <DynamicComponent {...item} {...this.props.extraProps} key={idx} />
+                let key = item.pg_id ? item.pg_id : idx;
+                return <DynamicComponent {...item} {...this.props.extraProps} key={key}
+                                         unMountMe={this.unmountChildHandler} idx={idx}
+                      />
               })}
             </div>
         );

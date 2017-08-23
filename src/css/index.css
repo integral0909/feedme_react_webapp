@@ -93,10 +93,14 @@ button.btn.btn-default.btn-red-hollow:focus {
 .dropdown-menu>.active>a:hover,
 .navbar-inverse .navbar-nav .open .dropdown-menu>.active>a,
 .navbar-inverse .navbar-nav .open .dropdown-menu>.active>a:focus,
-.navbar-inverse .navbar-nav .open .dropdown-menu>.active>a:hover{
+.navbar-inverse .navbar-nav .open .dropdown-menu>.active>a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus,
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover{
   background-color: #d61f3a;
 }
-.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
   background-color: #df203d;
 }
 .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
@@ -152,6 +156,16 @@ button.btn.btn-default.btn-red-hollow:focus {
 .ratings-summary > .fa-star {
   color: #FFC300;
   font-size: 16px;
+}
+.fade {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.4s linear;
+}
+.fade-out {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.4s, opacity 0.4s linear;
 }
 @media (max-width: 767px) {
 

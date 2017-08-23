@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../css/Cards.css';
 import {extractHostname, secondsToDisplayTime} from "../utils";
+import {RecipeToolbar} from "./RecipeToolbar";
+
 
 class RecipeCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {hidden: false}
+  }
+  handleSaveChange = (newSaveState) => {
+    if (!this.props.keepOnUnsave) {
+      setTimeout(() => {
+        this.props.unMountMe(this.props.idx);
+      }, 400);
+      this.setState({hidden: !newSaveState});
+    }
+  };
   render() {
     let hostName = extractHostname(this.props.source_url);
     let prepTime = secondsToDisplayTime(this.props.prep_time_seconds);
@@ -13,8 +26,9 @@ class RecipeCard extends Component {
       pathname: `/recipes/${this.props.pg_id}`,
       state: {recipe: this.props}
     };
+    let shareUrl = `https://www.feedmeeapp.com${recipeLocation.pathname}`;
     return (
-      <div className="card recipe-card">
+      <div className={`card recipe-card fade ${this.state.hidden ? 'fade-out' : ''}`}>
         <div className="row">
           <div className="col-sm-6">
             <Link to={recipeLocation}>
@@ -56,10 +70,10 @@ class RecipeCard extends Component {
             </div>
             <div className="row card-row">
               <div className="col-xs-12">
-                <ButtonGroup bsSize="large">
-                  <Button>{this.props.saved ? 'Unsave' : 'Save' }</Button>
-                  <Button>Share</Button>
-                </ButtonGroup>
+                <RecipeToolbar url={shareUrl} pg_id={this.props.pg_id}
+                               auth={this.props.auth} title={this.props.name}
+                               saved={true} saveCallback={this.handleSaveChange}
+                />
               </div>
             </div>
           </div>

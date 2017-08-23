@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
-import {Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import '../css/Cards.css';
 import {extractHostname} from "../utils";
-import {ShareGroup} from "./ShareGroup";
 import {AspectConstrainedImage} from "./AspectConstrainedImage";
-import {SaveButton} from "./SaveButton";
 import {RecipePropertyRow} from "./RecipePropertyRow";
 import {Reviewer} from "./Reviewer";
-import {get} from '../services/ApiService';
 import {RatingsSummary} from "./RatingsSummary";
 import {IngredientList} from "./IngredientList";
 import {DownloadCard} from "./DownloadCard";
+import {RecipeToolbar} from "./RecipeToolbar";
 
 class RecipeDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {rating: 0, userRating: 0, ratingsLoading: true}
   }
-  componentDidMount = () => {
-    get(`recipes/${this.props.pg_id}/ratings`, null,
-        this.props.auth.token).then((data) => {
-      this.setState({
-        userRating: data.user_rating, rating: data.rating,
-        ratingsLoading: false, ratingsCount: data.ratings_count
-      })
-    }).catch((ex) => {console.error(ex)});
+  handleRatingsUpdate = (data) => {
+    this.setState({
+      userRating: data.user_rating, rating: data.rating,
+      ratingsLoading: false, ratingsCount: data.ratings_count
+    })
   };
   handleRating = (newRating) => {
-    this.setState({userRating: newRating, ratingsLoading: false})
+    this.refs.ratingsSummary.updateData()
   };
   render() {
     let hostName = extractHostname(this.props.source_url);
@@ -43,7 +38,13 @@ class RecipeDetail extends Component {
                       className="margin-bottom ratings-summary-parent"
                       alt={this.props.name} ratio="16:9">
                     <RatingsSummary rating={this.state.rating}
-                                    ratingsCount={this.state.ratingsCount}/>
+                                    ratingsCount={this.state.ratingsCount}
+                                    onUpdate={this.handleRatingsUpdate}
+                                    subject="recipes"
+                                    pg_id={this.props.pg_id}
+                                    ref="ratingsSummary"
+                                    auth={this.props.auth}
+                    />
                   </AspectConstrainedImage>
                 </div>
                 <div className="row">
@@ -61,13 +62,10 @@ class RecipeDetail extends Component {
                   </div>
                   <div className="col-sm-6 margin-top" style={{  }}>
                     <strong>Share recipe</strong>
-                    <ButtonToolbar>
-                      <ShareGroup url={pageUrl} title={this.props.name} />
-                      <ButtonGroup>
-                        <SaveButton saved={this.props.saved} type="recipe"
-                                    pg_id={this.props.pg_id} auth={this.props.auth} />
-                      </ButtonGroup>
-                    </ButtonToolbar>
+                    <RecipeToolbar url={pageUrl} pg_id={this.props.pg_id}
+                                   auth={this.props.auth} saved={this.props.saved}
+                                   title={this.props.name}
+                    />
                   </div>
                 </div>
               </div>

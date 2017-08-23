@@ -16,10 +16,9 @@ const checkStatus = (response) => {
 };
 
 const buildHeaders = (token) => {
-  return {
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json'
-  }
+  let headers = {'Content-Type': 'application/json'};
+  if (token) headers.Authorization = `Bearer ${token}`;
+  return headers
 };
 
 const buildUrl = (resource, searchParams) => {

@@ -14,6 +14,7 @@
 .ingredient-list > li > i.fa-check {
   background: #7ED321;
   color: #FFF;
+  padding-left: 1px;
 }
 .ingredient-list > li > i.fa-plus {
   background: #DDD;

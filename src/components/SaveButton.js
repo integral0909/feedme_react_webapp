@@ -15,7 +15,12 @@ class SaveButton extends Component {
     let resource = `likes/${this.props.type}s`;
     let data = {did_like: newSaveState, [typeId]: this.props.pg_id};
     post(resource, data, this.props.auth.token)
-        .then(() => this.setState({loading: false, saved: newSaveState}))
+        .then(() => {
+          this.setState({loading: false, saved: newSaveState})
+          if (this.props.saveCallback) {
+            this.props.saveCallback(newSaveState)
+          }
+        })
         .catch((ex) =>  this.setState({loading: false}));
   }
   handleClick = () => {

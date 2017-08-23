@@ -10,7 +10,7 @@ function DownloadCard() {
             <img src={downloadBanner} className="img-responsive"
                  alt="Download Feedmee for iOS"
                  style={{margin: '-25px', marginRight: '0px'}}/>
-          </div>  
+          </div>
           <div className="col-sm-5 text-center">
             <h3>Like what you see?</h3>
             <h2>It's even better with our app</h2>
