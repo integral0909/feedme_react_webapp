@@ -8,7 +8,7 @@ class RecipeDetailPage extends Component {
   render() {
     let content = null;
     if (this.props.recipe) {
-      content = <RecipeDetail {...this.props.recipe} auth={this.props.auth} />;
+      content = <RecipeDetail data={this.props.recipe} auth={this.props.auth} />;
     } else {
       let resource = `recipes/${this.props.match.params.id}`;
       let extraProps = {auth: this.props.auth};

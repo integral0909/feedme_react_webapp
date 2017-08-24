@@ -68,7 +68,7 @@ class AsyncContent extends Component {
             <div>
               {this.state.results.map((item, idx) => {
                 let key = item.pg_id ? item.pg_id : idx;
-                return <DynamicComponent {...item} {...this.props.extraProps} key={key}
+                return <DynamicComponent data={item} {...this.props.extraProps} key={key}
                                          unMountMe={this.unmountChildHandler} idx={idx}
                       />
               })}

@@ -19,12 +19,12 @@ class RecipeCard extends Component {
     }
   };
   render() {
-    let hostName = extractHostname(this.props.source_url);
-    let prepTime = secondsToDisplayTime(this.props.prep_time_seconds);
-    let cookTime = secondsToDisplayTime(this.props.cook_time_seconds);
+    let hostName = extractHostname(this.props.data.source_url);
+    let prepTime = secondsToDisplayTime(this.props.data.prep_time_seconds);
+    let cookTime = secondsToDisplayTime(this.props.data.cook_time_seconds);
     let recipeLocation = {
-      pathname: `/recipes/${this.props.pg_id}`,
-      state: {recipe: this.props}
+      pathname: `/recipes/${this.props.data.pg_id}`,
+      state: {recipe: this.props.data}
     };
     let shareUrl = `https://www.feedmeeapp.com${recipeLocation.pathname}`;
     return (
@@ -32,14 +32,14 @@ class RecipeCard extends Component {
         <div className="row">
           <div className="col-sm-6">
             <Link to={recipeLocation}>
-            <img src={this.props.image_url} alt={this.props.name} className="img-responsive"/>
+            <img src={this.props.data.image_url} alt={this.props.data.name} className="img-responsive"/>
             </Link>
           </div>
           <div className="col-sm-6">
             <Link to={recipeLocation}>
-              <h2 className="pink">{this.props.name}</h2>
+              <h2 className="pink">{this.props.data.name}</h2>
             </Link>
-            <p>Recipe from <a href={this.props.source_url} target="_blank">{hostName}</a></p>
+            <p>Recipe from <a href={this.props.data.source_url} target="_blank">{hostName}</a></p>
             <div className="row card-row">
               <div className="col-xs-3">
                 <strong>{prepTime}</strong><br />
@@ -50,11 +50,11 @@ class RecipeCard extends Component {
                 <small className="text-muted">COOK TIME</small>
               </div>
               <div className="col-xs-3">
-                <strong>{this.props.servings}</strong><br />
+                <strong>{this.props.data.servings}</strong><br />
                 <small className="text-muted">SERVINGS</small>
               </div>
               <div className="col-xs-3">
-                <strong>{this.props.difficulty}</strong><br />
+                <strong>{this.props.data.difficulty}</strong><br />
                 <small className="text-muted">DIFFICULTY</small>
               </div>
             </div>
@@ -62,7 +62,7 @@ class RecipeCard extends Component {
               <div className="col-xs-12">
                 <small className="text-muted">DIETARY INFO</small><br />
                 <ul className="list-inline">
-                  {this.props.keywords.map((item, i) => {
+                  {this.props.data.keywords.map((item, i) => {
                     return (<li key={i}>{item}</li>)
                   })}
                 </ul>
@@ -70,8 +70,8 @@ class RecipeCard extends Component {
             </div>
             <div className="row card-row">
               <div className="col-xs-12">
-                <RecipeToolbar url={shareUrl} pg_id={this.props.pg_id}
-                               auth={this.props.auth} title={this.props.name}
+                <RecipeToolbar url={shareUrl} pg_id={this.props.data.pg_id}
+                               auth={this.props.auth} title={this.props.data.name}
                                saved={true} saveCallback={this.handleSaveChange}
                 />
               </div>

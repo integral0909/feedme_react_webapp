@@ -21,12 +21,12 @@ class RecipeDetail extends Component {
       ratingsLoading: false, ratingsCount: data.ratings_count
     })
   };
-  handleRating = (newRating) => {
+  handleUserRating = () => {
     this.refs.ratingsSummary.updateData()
   };
   render() {
-    let hostName = extractHostname(this.props.source_url);
-    let pageUrl = `https://www.feedmeeapp.com/recipe/${this.props.pg_id}`;
+    let hostName = extractHostname(this.props.data.source_url);
+    let pageUrl = `https://www.feedmeeapp.com/recipe/${this.props.data.pg_id}`;
     return (
         <div className="container">
           <div className="row">
@@ -34,14 +34,14 @@ class RecipeDetail extends Component {
               <div className="card bordered padded margin-top-lg">
                 <div className="row">
                   <AspectConstrainedImage
-                      imageUrl={this.props.image_url}
+                      imageUrl={this.props.data.image_url}
                       className="margin-bottom ratings-summary-parent"
-                      alt={this.props.name} ratio="16:9">
+                      alt={this.props.data.name} ratio="16:9">
                     <RatingsSummary rating={this.state.rating}
                                     ratingsCount={this.state.ratingsCount}
                                     onUpdate={this.handleRatingsUpdate}
                                     subject="recipes"
-                                    pg_id={this.props.pg_id}
+                                    pg_id={this.props.data.pg_id}
                                     ref="ratingsSummary"
                                     auth={this.props.auth}
                     />
@@ -49,12 +49,12 @@ class RecipeDetail extends Component {
                 </div>
                 <div className="row">
                   <div className="col-sm-6 bordered-right">
-                    <h2 className="pink">{this.props.name}</h2>
-                    <p className="text-muted">{this.props.description}</p>
-                    <p>Recipe from <a href={this.props.source_url} target="_blank">{hostName}</a></p>
+                    <h2 className="pink">{this.props.data.name}</h2>
+                    <p className="text-muted">{this.props.data.description}</p>
+                    <p>Recipe from <a href={this.props.data.source_url} target="_blank">{hostName}</a></p>
                     <p>
                       <ul className="list-inline text-muted">
-                        {this.props.keywords.map((item, idx) => {
+                        {this.props.data.keywords.map((item, idx) => {
                           return (<li key={idx}>{item}</li>)
                         })}
                       </ul>
@@ -62,9 +62,9 @@ class RecipeDetail extends Component {
                   </div>
                   <div className="col-sm-6 margin-top" style={{  }}>
                     <strong>Share recipe</strong>
-                    <RecipeToolbar url={pageUrl} pg_id={this.props.pg_id}
-                                   auth={this.props.auth} saved={this.props.saved}
-                                   title={this.props.name}
+                    <RecipeToolbar url={pageUrl} pg_id={this.props.data.pg_id}
+                                   auth={this.props.auth} saved={this.props.data.saved}
+                                   title={this.props.data.name}
                     />
                   </div>
                 </div>
@@ -73,16 +73,16 @@ class RecipeDetail extends Component {
                 <div className="row">
                   <div className="col-sm-7 bordered-right">
                     <RecipePropertyRow
-                        prepTimeSeconds={this.props.prep_time_seconds}
-                        cookTimeSeconds={this.props.cook_time_seconds}
-                        servings={this.props.servings}
-                        difficulty={this.props.difficulty}
+                        prepTimeSeconds={this.props.data.prep_time_seconds}
+                        cookTimeSeconds={this.props.data.cook_time_seconds}
+                        servings={this.props.data.servings}
+                        difficulty={this.props.data.difficulty}
                     />
                   </div>
                   <div className="col-sm-5">
                     <Reviewer subject="recipe" rating={this.state.userRating}
-                              auth={this.props.auth} pg_id={this.props.pg_id}
-                              handleUpdate={this.handleRating}
+                              auth={this.props.auth} pg_id={this.props.data.pg_id}
+                              handleUpdate={this.handleUserRating}
                               loading={this.state.ratingsLoading}
                     />
                   </div>
@@ -92,15 +92,15 @@ class RecipeDetail extends Component {
                 <div className="row">
                   <div className="col-sm-6">
                     <h3>Ingredients</h3>
-                    <IngredientList ingredients={this.props.ingredients} />
+                    <IngredientList ingredients={this.props.data.ingredients} />
                   </div>
                   <div className="col-sm-6">
                     <h3>Instructions</h3>
-                    <p>Recipe instructions from <a href={this.props.source_url} target="_blank">{hostName}</a></p>
-                    <Button href={this.props.source_url} target="_blank" block
+                    <p>Recipe instructions from <a href={this.props.data.source_url} target="_blank">{hostName}</a></p>
+                    <Button href={this.props.data.source_url} target="_blank" block
                             bsStyle="danger" bsSize="large" className="btn-red">View Instructions</Button>
                     <div className="card bordered border-dashed padded margin-top">
-                      <p>This recipe was originally from <a href={this.props.source_url} target="_blank">{hostName}</a>.</p>
+                      <p>This recipe was originally from <a href={this.props.data.source_url} target="_blank">{hostName}</a>.</p>
                       <p>You can’t view the recipe on Feedmee because we respect the original author and prefer to refer you to their sites. Read more.</p>
                       <p>If you are the original author, you can claim your profile now & contribute.</p>
                     </div>
