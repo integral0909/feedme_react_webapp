@@ -52,13 +52,11 @@ class RecipeDetail extends Component {
                     <h2 className="pink">{this.props.data.name}</h2>
                     <p className="text-muted">{this.props.data.description}</p>
                     <p>Recipe from <a href={this.props.data.source_url} target="_blank">{hostName}</a></p>
-                    <p>
-                      <ul className="list-inline text-muted">
-                        {this.props.data.keywords.map((item, idx) => {
-                          return (<li key={idx}>{item}</li>)
-                        })}
-                      </ul>
-                    </p>
+                    <ul className="list-inline text-muted">
+                      {this.props.data.keywords.map((item, idx) => {
+                        return (<li key={idx}>{item}</li>)
+                      })}
+                    </ul>
                   </div>
                   <div className="col-sm-6 margin-top" style={{  }}>
                     <strong>Share recipe</strong>
