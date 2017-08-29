@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactLoading from 'react-loading';
 import {get} from "../services/ApiService";
 import {getLoadingSpinner} from "../utils";
 
