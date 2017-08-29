@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
 import {get} from "../services/ApiService";
+import {getLoadingSpinner} from "../utils";
 
 class AsyncContent extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class AsyncContent extends Component {
     }
   };
   handleManyResults(json) {
-    /* Endpoints which list many results will wrap those results in a meta object
+    /* Endpoints which list many results will wrap those results in an object
       and store the results in a results property. */
     let results = json.results;
     if (this.props.mergeResults) {
@@ -49,39 +50,42 @@ class AsyncContent extends Component {
           return json.results ? this.handleManyResults(json) : this.handleOneResult(json);
       }).catch((ex) => this.setState({didLoad: false, loading: false, error: true}));
   };
-  getLoadingSpinner = (isLoading, type, color, width) => {
-    return isLoading ? <ReactLoading type={type} color={color} width={width}
-                                     className="center-block" /> : null;
-  };
   unmountChildHandler = (key) => {
     let newResults = Array.from(this.state.results);
     newResults.splice(key, 1); // Could save return value here for "Undo" feature
     this.setState({results: newResults})
   };
+  getMainContent(DynamicComponent) {
+    if (this.props.singleInstanceComponent) {
+      return (
+          <div>
+            <DynamicComponent data={this.state.results} {...this.props.extraProps}
+                              loading={this.state.loading} />
+          </div>);
+    } else {
+      return (
+          <div>
+            {this.state.results.map((item, idx) => {
+              let key = item.pg_id ? item.pg_id : idx;
+              return <DynamicComponent data={item} {...this.props.extraProps} key={key}
+                                       unMountMe={this.unmountChildHandler} idx={idx}
+              />
+            })}
+          </div>
+      );
+    }
+  }
   render() {
     let DynamicComponent = this.props.component;
-    let content = (<h2 className="text-center">Log in required</h2>);
-    let loading = this.getLoadingSpinner(this.state.loading, 'bubbles', '#E73D57', '120px');
-    if (this.props.auth.user) {
-      if (this.state.results.length) {
-        content = (
-            <div>
-              {this.state.results.map((item, idx) => {
-                let key = item.pg_id ? item.pg_id : idx;
-                return <DynamicComponent data={item} {...this.props.extraProps} key={key}
-                                         unMountMe={this.unmountChildHandler} idx={idx}
-                      />
-              })}
-            </div>
-        );
-      } else {
-        content = null
-      }
+    let content = null;
+    if (this.state.results.length) {
+      content = this.getMainContent(DynamicComponent);
+    } else if (this.props.loginRequired && (!this.props.auth.user)) {
+      content = (<h2 className="text-center">Log in required</h2>)
     }
     return (
         <div>
-          {content}
-          {loading}
+          {content || getLoadingSpinner(this.state.loading)}
         </div>
     );
   }

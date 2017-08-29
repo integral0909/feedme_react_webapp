@@ -10,13 +10,14 @@ class RecipeSavedPage extends Component {
         <div className="container" key={this.props.pg_id}>
           <h2>My saved recipes</h2>
           <div className="row">
-            <div className="col-sm-10">
+            <div className="col-sm-9">
               <AsyncContent
                   auth={this.props.auth}
                   host={process.env.REACT_APP_HOST}
                   resource='recipes'
                   searchParams={new URLSearchParams('?saved=true')}
                   mergeResults
+                  loginRequired
                   component={RecipeCard}
                   extraProps={{saved: true, auth: this.props.auth}}
               />

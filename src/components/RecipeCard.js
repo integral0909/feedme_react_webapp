@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/Cards.css';
 import {extractHostname, secondsToDisplayTime} from "../utils";
 import {RecipeToolbar} from "./RecipeToolbar";
+import {AspectConstrainedImage} from "./AspectConstrainedImage";
 
 
 class RecipeCard extends Component {
@@ -32,7 +33,12 @@ class RecipeCard extends Component {
         <div className="row">
           <div className="col-sm-6">
             <Link to={recipeLocation}>
-            <img src={this.props.data.image_url} alt={this.props.data.name} className="img-responsive"/>
+              <AspectConstrainedImage
+                  imageUrl={this.props.data.image_url}
+                  alt={this.props.data.name}
+                  ratio="14:11"
+                  style={{marginRight: 0}}
+              />
             </Link>
           </div>
           <div className="col-sm-6">

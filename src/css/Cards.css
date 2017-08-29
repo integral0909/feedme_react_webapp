@@ -32,3 +32,24 @@
   margin-right: -25px;
   margin-top: -25px;
 }
+.card.collection-card .img-aspect {
+  position: relative;
+  margin-bottom: -25px;
+  margin-right: 0;
+}
+.card.collection-card .img-aspect > h2 {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  color: #FFF;
+}
+.collection-list {
+  margin-bottom: 25px;
+}
+.collection-list li {
+  padding: 10px 0;
+}
+.card.collection-card .pull-bottom {
+  position: absolute;
+  bottom: 15px;
+}

@@ -30,7 +30,7 @@ class RecipeDetail extends Component {
     return (
         <div className="container">
           <div className="row">
-            <div className="col-sm-10">
+            <div className="col-sm-9">
               <div className="card bordered padded margin-top-lg">
                 <div className="row">
                   <AspectConstrainedImage
