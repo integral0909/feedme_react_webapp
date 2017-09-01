@@ -1,0 +1,14 @@
+.hero-section {
+  height: 100vh;
+  height: calc(100vh - 60px);
+  width: 100vw;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+.content-wrapper.center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}

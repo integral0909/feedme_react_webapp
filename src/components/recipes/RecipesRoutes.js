@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import {
   RecipeBrowsePage, RecipeSavedPage,
   RecipeDetailPage, SearchPage, CollectionDetailPage
-} from '../pages/MainPages';
+} from '../../pages/MainPages';
 
 class RecipeRoutes extends Component {
   render() {

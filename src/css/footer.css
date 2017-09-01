@@ -1,0 +1,23 @@
+footer {
+  background-color: #282828;
+  padding: 40px;
+  padding-bottom: 80px;
+  margin-top: 60px;
+}
+footer a {
+  color: #9B9B9B;
+}
+footer a:hover,
+footer a:focus,
+footer a:active {
+  color: #BBB;
+}
+footer h4 {
+  color: #FFF;
+}
+footer ul.list-unstyled:not(.list-inline) > li {
+  margin-top: 7px;
+}
+footer .copyright-section {
+  margin-top: 40px;
+}

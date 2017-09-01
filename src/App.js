@@ -8,7 +8,8 @@ import {
   ImpactPage, SearchPage
 } from "./pages/MainPages";
 import { initializeApp } from 'firebase';
-import {RecipeRoutes} from "./components/RecipesRoutes";
+import {RecipeRoutes} from "./components/recipes/RecipesRoutes";
+import {Footer} from "./components/Footer";
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class App extends Component {
           <Route path="/recipes" render={({match, location}) => {
             return <RecipeRoutes auth={this.state.auth} match={match} />
           }} />
+          <Footer/>
         </div>
       </Router>
     );

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ButtonGroup, ButtonToolbar} from 'react-bootstrap';
-import {ShareGroup} from "./ShareGroup";
-import {SaveButton} from "./SaveButton";
+import {ShareGroup} from "../ShareGroup";
+import {SaveButton} from "../SaveButton";
 
 class RecipeToolbar extends Component {
   render() {

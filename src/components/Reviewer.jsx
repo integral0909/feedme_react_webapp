@@ -16,7 +16,7 @@ class Reviewer extends Component {
   handleClick = (newRating) => {
     newRating++;
     let resource = `${this.props.subject}s/${this.props.pg_id}/ratings`;
-    post(resource, {rating: newRating}, this.props.auth.token)
+    post(resource, {rating: newRating}, this.props.auth)
         .then(() => this.props.handleUpdate(newRating))
         .catch(() => null);
     this.setState({loading: true})

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 import 'url-search-params';
 import {AsyncContent} from "../components/AsyncContent";
-import {RecipeDetail} from "../components/RecipeDetail";
+import {RecipeDetail} from "../components/recipes/RecipeDetail";
 
 class RecipeDetailPage extends Component {
   render() {

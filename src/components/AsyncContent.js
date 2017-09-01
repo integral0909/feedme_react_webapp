@@ -44,7 +44,7 @@ class AsyncContent extends Component {
   }
   requestResource = (props) => {
     this.setState({loading: true, didLoad: false});
-    get(props.resource, props.searchParams, props.auth.token)
+    get(props.resource, props.searchParams, props.auth)
         .then((json) => {
           return json.results ? this.handleManyResults(json) : this.handleOneResult(json);
       }).catch((ex) => this.setState({didLoad: false, loading: false, error: true}));

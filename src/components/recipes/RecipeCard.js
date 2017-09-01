@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/Cards.css';
-import {extractHostname, secondsToDisplayTime} from "../utils";
+import 'css/Cards.css';
+import {secondsToDisplayTime} from "utils";
 import {RecipeToolbar} from "./RecipeToolbar";
-import {AspectConstrainedImage} from "./AspectConstrainedImage";
+import {AspectConstrainedImage} from "components/AspectConstrainedImage";
+import {SourceLink} from "components/SourceLink";
 
 
 class RecipeCard extends Component {
@@ -20,7 +21,6 @@ class RecipeCard extends Component {
     }
   };
   render() {
-    let hostName = extractHostname(this.props.data.source_url);
     let prepTime = secondsToDisplayTime(this.props.data.prep_time_seconds);
     let cookTime = secondsToDisplayTime(this.props.data.cook_time_seconds);
     let recipeLocation = {
@@ -29,7 +29,7 @@ class RecipeCard extends Component {
     };
     let shareUrl = `https://www.feedmeeapp.com${recipeLocation.pathname}`;
     return (
-      <div className={`card recipe-card fade ${this.state.hidden ? 'fade-out' : ''}`}>
+      <div className={`card recipe-card hover-shadow fade ${this.state.hidden ? 'fade-out' : ''}`}>
         <div className="row">
           <div className="col-sm-6">
             <Link to={recipeLocation}>
@@ -45,7 +45,7 @@ class RecipeCard extends Component {
             <Link to={recipeLocation}>
               <h2 className="pink">{this.props.data.name}</h2>
             </Link>
-            <p>Recipe from <a href={this.props.data.source_url} target="_blank">{hostName}</a></p>
+            <SourceLink url={this.props.data.source_url} type="Recipe"/>
             <div className="row card-row">
               <div className="col-xs-3">
                 <strong>{prepTime}</strong><br />

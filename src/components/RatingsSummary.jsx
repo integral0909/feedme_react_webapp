@@ -11,7 +11,7 @@ class RatingsSummary extends Component {
     }
   }
   updateData = () => {
-    get(`${this.props.subject}/${this.props.pg_id}/ratings`, null, this.props.auth.token)
+    get(`${this.props.subject}/${this.props.pg_id}/ratings`, null, this.props.auth)
        .then((data) => this.props.onUpdate(data)).catch((ex) => console.error(ex));
   };
   render() {

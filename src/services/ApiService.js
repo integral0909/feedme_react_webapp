@@ -26,18 +26,29 @@ const buildUrl = (resource, searchParams) => {
   return `${host}/api/${resource}/${searchStr}`
 };
 
-const get = (resource, searchParams, token) => {
-  return fetch(buildUrl(resource, searchParams), {
-    headers: buildHeaders(token)
-  }).then(checkStatus).then(parseJson)
+const get = (resource, searchParams, auth) => {
+  try {
+    return auth.user.getIdToken().then((token) => {
+      return fetch(buildUrl(resource, searchParams), {
+        headers: buildHeaders(token)
+      }).then(checkStatus).then(parseJson)
+    });
+  } catch(e) {
+    return fetch(buildUrl(resource, searchParams), {
+      headers: buildHeaders()
+    }).then(checkStatus).then(parseJson)
+  }
+
 };
 
-const post = (resource, data, token) => {
-  return fetch(buildUrl(resource), {
-    headers: buildHeaders(token),
-    method: 'POST',
-    body: JSON.stringify(data)
-  }).then(checkStatus).then(parseJson)
+const post = (resource, data, auth) => {
+  return auth.user.getIdToken().then((token) => {
+    return fetch(buildUrl(resource), {
+      headers: buildHeaders(token),
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(checkStatus).then(parseJson)
+  })
 };
 
 export {get, post};

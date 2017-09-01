@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {secondsToDisplayTime} from "../utils";
+import {secondsToDisplayTime} from "../../utils";
 
 
 class RecipePropertyRow extends Component {

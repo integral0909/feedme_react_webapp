@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {Button} from 'react-bootstrap';
-import '../css/Cards.css';
-import {extractHostname} from "../utils";
-import {AspectConstrainedImage} from "./AspectConstrainedImage";
+import 'css/Cards.css';
+import {AspectConstrainedImage} from "components/AspectConstrainedImage";
 import {RecipePropertyRow} from "./RecipePropertyRow";
-import {Reviewer} from "./Reviewer";
-import {RatingsSummary} from "./RatingsSummary";
-import {IngredientList} from "./IngredientList";
-import {DownloadCard} from "./DownloadCard";
+import {Reviewer} from "components/Reviewer";
+import {RatingsSummary} from "components/RatingsSummary";
+import {IngredientList} from "components/IngredientList";
+import {DownloadCard} from "components/DownloadCard";
 import {RecipeToolbar} from "./RecipeToolbar";
+import {HostLink} from "components/HostLink";
+import {SourceLink} from "components/SourceLink";
 
 class RecipeDetail extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class RecipeDetail extends Component {
     this.refs.ratingsSummary.updateData()
   };
   render() {
-    let hostName = extractHostname(this.props.data.source_url);
+    let source_url = this.props.data.source_url;
     let pageUrl = `https://www.feedmeeapp.com/recipe/${this.props.data.pg_id}`;
     return (
         <div className="container">
@@ -51,7 +52,7 @@ class RecipeDetail extends Component {
                   <div className="col-sm-6 bordered-right">
                     <h2 className="pink">{this.props.data.name}</h2>
                     <p className="text-muted">{this.props.data.description}</p>
-                    <p>Recipe from <a href={this.props.data.source_url} target="_blank">{hostName}</a></p>
+                    <SourceLink url={source_url} type="Recipe" />
                     <ul className="list-inline text-muted">
                       {this.props.data.keywords.map((item, idx) => {
                         return (<li key={idx}>{item}</li>)
@@ -94,11 +95,11 @@ class RecipeDetail extends Component {
                   </div>
                   <div className="col-sm-6">
                     <h3>Instructions</h3>
-                    <p>Recipe instructions from <a href={this.props.data.source_url} target="_blank">{hostName}</a></p>
+                    <p>Recipe instructions from <HostLink url={source_url} /></p>
                     <Button href={this.props.data.source_url} target="_blank" block
                             bsStyle="danger" bsSize="large" className="btn-red">View Instructions</Button>
                     <div className="card bordered border-dashed padded margin-top">
-                      <p>This recipe was originally from <a href={this.props.data.source_url} target="_blank">{hostName}</a>.</p>
+                      <p>This recipe was originally from <HostLink url={source_url} />.</p>
                       <p>You can’t view the recipe on Feedmee because we respect the original author and prefer to refer you to their sites. Read more.</p>
                       <p>If you are the original author, you can claim your profile now & contribute.</p>
                     </div>

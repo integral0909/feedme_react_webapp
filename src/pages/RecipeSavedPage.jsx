@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncContent} from "../components/AsyncContent";
-import { RecipeCard} from "../components/RecipeCard";
+import { RecipeCard} from "../components/recipes/RecipeCard";
 import 'whatwg-fetch';
 import 'url-search-params';
 

@@ -1,15 +1,17 @@
 import React, {  } from 'react';
-import {TextInput} from './TextInput'
-import {lengthValidator, mixedCharactersValidator, repetitionValidator, commonPasswordValidator} from '../Validators'
+import {AbstractInput} from './AbstractInput'
+import {lengthValidator} from '../../Validators'
 import { FormGroup, FormControl } from 'react-bootstrap';
 
-class PasswordInput extends TextInput {
-  validator(value) {
+class TextInput extends AbstractInput {
+  getInitialState() {
+    return {
+      feedback: null
+    }
+  }
+  validator (value) {
     if (this.props.validate) {
-      return commonPasswordValidator(
-          ...repetitionValidator(
-              ...mixedCharactersValidator(
-                  ...lengthValidator(value))));
+      return lengthValidator(value, null, null, this.props.minLength)
     }
     return [value, null, null]
   }
@@ -21,7 +23,7 @@ class PasswordInput extends TextInput {
             validationState={this.props.status}
         >
           <FormControl
-              type="password"
+              type="text"
               value={this.props.value}
               placeholder={this.props.placeholder}
               onChange={this.handleChange}
@@ -33,4 +35,4 @@ class PasswordInput extends TextInput {
   }
 }
 
-export {PasswordInput};
+export {TextInput};
