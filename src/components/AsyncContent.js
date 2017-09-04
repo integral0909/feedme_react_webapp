@@ -16,12 +16,12 @@ class AsyncContent extends Component {
     };
   }
   componentDidMount = () => {
-    if (this.props.auth.token) {
+    if (this.props.auth.token || !this.props.loginRequired) {
       this.requestResource(this.props)
     }
   };
   componentWillReceiveProps = (nextProps) => {
-    if (this.props.auth.token !== nextProps.auth.token) {
+    if (this.props.auth.token !== nextProps.auth.token || !this.props.loginRequired) {
       this.requestResource(nextProps)
     }
   };

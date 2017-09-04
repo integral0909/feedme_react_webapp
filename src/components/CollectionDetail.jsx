@@ -7,7 +7,7 @@ class CollectionDetail extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-9">
-              <h2>{this.props.data.name}</h2>
+              <h1>{this.props.data.name}</h1>
               {this.props.data.recipes.map(
                   (rcp) => <RecipeCard data={rcp} auth={this.props.auth} />
               )}

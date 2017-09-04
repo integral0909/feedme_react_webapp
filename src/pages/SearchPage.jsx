@@ -41,7 +41,8 @@ class SearchPage extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Searching")
+    let ings = this.state.ingredients.map(ing => ing.name).join('&ingredient=');
+    this.props.history.push('/recipes/search?ingredient='+ings)
   };
   reduceSuggestionsByIngredients(ingredients, suggestions) {
     let ing_ids = ingredients.map((ing) => ing.pg_id);
@@ -86,7 +87,7 @@ class SearchPage extends Component {
               />
               <InputGroup.Button>
                 <Button className="btn-black" type="submit">
-                  <i className="fa fa-search"/></Button>
+                  <i className="fa fa-search"/><span className="sr-only">Search</span></Button>
               </InputGroup.Button>
             </InputGroup>
           </FormGroup>

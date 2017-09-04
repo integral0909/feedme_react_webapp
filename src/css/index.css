@@ -89,6 +89,18 @@ button.btn.btn-default.btn-black:active,
 .btn-black:active {
   background-color: #333;
 }
+button.btn.btn-default.btn-white {
+  background-color: #fff;
+  border-color: #4A4A4A;
+  color: #4A4A4A;
+}
+button.btn.btn-default.btn-white:hover,
+button.btn.btn-default.btn-white:focus,
+button.btn.btn-default.btn-white:active {
+  background-color: #f1f1f1;
+  border-color: #333;
+  color: #333;
+}
 .modal-form {
   margin-top: 15px;
   margin-bottom: 15px;

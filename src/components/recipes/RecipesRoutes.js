@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import {
   RecipeBrowsePage, RecipeSavedPage,
-  RecipeDetailPage, SearchPage, CollectionDetailPage
+  RecipeDetailPage, SearchPage, CollectionDetailPage,
+  SearchResultsPage
 } from '../../pages/MainPages';
 
 class RecipeRoutes extends Component {
@@ -10,7 +11,13 @@ class RecipeRoutes extends Component {
     let match = this.props.match;
     return (
         <Switch>
-          <Route path={`${match.url}/search`} component={SearchPage}/>
+          <Route exact path={`${match.url}`} component={SearchPage}/>
+          <Route exact path={`${match.url}/search`} render={
+            ({location, match, history}) => <SearchResultsPage location={location}
+                                                               match={match}
+                                                               history={history}
+                                                               auth={this.props.auth} />
+          }/>
           <Route path={`${match.url}/browse/:slug`}
                  render={({location, match}) => <CollectionDetailPage
                                                     auth={this.props.auth}

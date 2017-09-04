@@ -14,8 +14,10 @@ class Footer extends Component {
                   <h4>Feedmee</h4>
                   <ul className="list-unstyled">
                     <li><Link to="/impact">Impact</Link></li>
-                    <li><a href="/team/" target="_blank">Team</a></li>
-                    <li><a href="/blog/" target="_blank">Blog</a></li>
+                    <li><a href="/team/" target="_blank"
+                           rel="noopener noreferrer">Team</a></li>
+                    <li><a href="/blog/" target="_blank"
+                           rel="noopener noreferrer">Blog</a></li>
                   </ul>
                 </div>
                 <div className="col-sm-2">
@@ -37,38 +39,45 @@ class Footer extends Component {
             <div className="col-sm-3 copyright-section">
               <small>
               <ul className="list-unstyled list-inline">
-                <li><a href="/privacy/" target="_blank">Privacy</a></li>
+                <li><a href="/privacy/" target="_blank"
+                       rel="noopener noreferrer">Privacy</a></li>
                 <li>|</li>
-                <li><a href="/terms/" target="_blank">Terms of use</a></li>
+                <li><a href="/terms/" target="_blank"
+                       rel="noopener noreferrer">Terms of use</a></li>
               </ul>
               </small>
               <ul className="list-unstyled list-inline">
                 <li>
-                  <a href="https://www.instagram.com/feedmeeapp_au/" target="_blank">
+                  <a href="https://www.instagram.com/feedmeeapp_au/" target="_blank"
+                     rel="noopener noreferrer">
                   <img src="https://cdn.feedmeeapp.com/static/images/instagram.svg"
                        alt="instagram" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/Feedmeeapp/" target="_blank">
+                  <a href="https://www.facebook.com/Feedmeeapp/" target="_blank"
+                     rel="noopener noreferrer">
                   <img src="https://cdn.feedmeeapp.com/static/images/facebook.svg"
                        alt="facebook" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/FeedmeeA" target="_blank">
+                  <a href="https://twitter.com/FeedmeeA" target="_blank"
+                     rel="noopener noreferrer">
                   <img src="https://cdn.feedmeeapp.com/static/images/twitter.svg"
                        alt="twitter" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/company-beta/13179226/" target="_blank">
+                  <a href="https://www.linkedin.com/company-beta/13179226/" target="_blank"
+                     rel="noopener noreferrer">
                   <img src="https://cdn.feedmeeapp.com/static/images/linkedin.svg"
                        alt="linkedin" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://medium.com/feedmee-app" target="_blank">
+                  <a href="https://medium.com/feedmee-app" target="_blank"
+                     rel="noopener noreferrer">
                   <img src="https://cdn.feedmeeapp.com/static/images/medium.svg"
                        alt="medium" />
                   </a>

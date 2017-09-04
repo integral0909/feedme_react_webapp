@@ -4,8 +4,9 @@ import {RecipeBrowsePage} from "./RecipeBrowsePage";
 import {RecipeSavedPage} from "./RecipeSavedPage";
 import {RecipeDetailPage} from "./RecipeDetailPage";
 import {CollectionDetailPage} from "./CollectionDetailPage";
+import {SearchResultsPage} from "./SearchResultsPage";
 
 export {
   ImpactPage, SearchPage, RecipeBrowsePage, RecipeSavedPage, RecipeDetailPage,
-  CollectionDetailPage
+  CollectionDetailPage, SearchResultsPage
 };

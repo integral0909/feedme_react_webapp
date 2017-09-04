@@ -78,7 +78,8 @@ class RecipeCard extends Component {
               <div className="col-xs-12">
                 <RecipeToolbar url={shareUrl} pg_id={this.props.data.pg_id}
                                auth={this.props.auth} title={this.props.data.name}
-                               saved={true} saveCallback={this.handleSaveChange}
+                               saved={this.props.data.saved}
+                               saveCallback={this.handleSaveChange}
                 />
               </div>
             </div>

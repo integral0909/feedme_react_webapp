@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { AsyncContent} from "../components/AsyncContent";
-import { RecipeCard} from "../components/recipes/RecipeCard";
+import { AsyncContent} from "components/AsyncContent";
+import { RecipeCard} from "components/recipes/RecipeCard";
 import 'whatwg-fetch';
 import 'url-search-params';
 
@@ -8,7 +8,7 @@ class RecipeSavedPage extends Component {
   render() {
     return (
         <div className="container" key={this.props.pg_id}>
-          <h2>My saved recipes</h2>
+          <h1>My saved recipes</h1>
           <div className="row">
             <div className="col-sm-9">
               <AsyncContent

@@ -4,20 +4,41 @@ import { LinkContainer } from 'react-router-bootstrap';
 import logo from '../assets/feedmee_logo.png';
 import '../css/MainNavbar.css'
 import { LoginModal } from './LoginModal'
+import {LogoutModal} from "./LogoutModal";
 
 
 class MainNav extends Component {
-  openLogin = () => {
-    this.refs.loginModal.toggle()
+  constructor(props) {
+    super(props)
+    this.state = {loginModal: false, logoutModal: false}
+  }
+  toggleModal = (modalName) => {
+    this.setState({[modalName]: !this.state[modalName]})
   }
   render () {
     let loginBlock = null;
     if (!this.props.auth.user) {
       loginBlock = (
       <Navbar.Form pullRight>
-        <LoginModal ref="loginModal" auth={this.props.auth} />
-        <Button bsStyle="default" onClick={this.openLogin}>Login</Button>
+        <LoginModal auth={this.props.auth}
+                    closeHandler={() => this.toggleModal('loginModal')}
+                    showModal={this.state.loginModal} />
+        <Button bsStyle="default" onClick={()=> this.toggleModal('loginModal')}>Login</Button>
       </Navbar.Form>
+      )
+    } else {
+      loginBlock = (
+        <NavDropdown
+            eventKey={4}
+            title={this.props.auth.user.displayName || this.props.auth.user.email}
+            id="basic-nav-dropdown">
+          <MenuItem eventKey={4.1} onClick={() => this.toggleModal('logoutModal')}>
+            Logout
+          </MenuItem>
+          <LogoutModal auth={this.props.auth}
+                      closeHandler={() => this.toggleModal('logoutModal')}
+                      showModal={this.state.logoutModal} />
+        </NavDropdown>
       )
     }
     return (
@@ -33,7 +54,7 @@ class MainNav extends Component {
               <LinkContainer to="/impact">
                 <NavItem eventKey={1}>Impact</NavItem>
               </LinkContainer>
-              <LinkContainer to="/recipes/search">
+              <LinkContainer to="/recipes/" exact>
                 <NavItem eventKey={2}>Search</NavItem>
               </LinkContainer>
               <LinkContainer to="/recipes/browse">
