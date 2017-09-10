@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { EmailLogin } from './EmailLogin'
+import {FacebookLogin} from "./FacebookLogin";
 
 class LoginModal extends Component {
+  loginSuccessHandler = () => {
+    if (this.props.successHandler) {
+      setTimeout(() => {
+        this.props.successHandler()
+      }, 1000);
+    };
+    this.props.closeHandler()
+  };
   render () {
     return (
         <Modal show={this.props.showModal} onHide={this.close} className="col-sm-3">
           <Modal.Body className="text-center">
-            <EmailLogin className="form" auth={this.props.auth} />
+            <FacebookLogin auth={this.props.auth} onSuccess={this.loginSuccessHandler}/>
+            <EmailLogin className="form" auth={this.props.auth}
+                        onSuccess={this.loginSuccessHandler} />
             <ul className="list-inline">
               <li><a href="/signup/">Sign up</a></li>
               <li>|</li>

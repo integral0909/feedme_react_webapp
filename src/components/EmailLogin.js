@@ -2,30 +2,30 @@ import React, {  } from 'react';
 import { AbstractForm } from './forms/AbstractForm'
 import { TextInput } from './forms/TextInput';
 import { PasswordInput } from './forms/PasswordInput';
-import { LoginService } from '../services/LoginService';
 import { Button } from 'react-bootstrap';
 
 class EmailLogin extends AbstractForm {
   inputNames = ['password', 'email'];
-  LoginService = new LoginService(this.props.auth.authService);
   getInitialState() {
     return {
       password: {value: '', 'status': null},
       email: {value: '', 'status': null},
       messages: []
     };
-  }
+  };
   handleSubmit = (e) => {
     super.handleSubmit(e);
-    this.LoginService.login(this.state.email.value, this.state.password.value,
-        this.onLoginFailure);
-  }
+    this.props.auth.authService()
+      .signInWithEmailAndPassword(this.state.email.value, this.state.password.value)
+      .then(this.props.onSuccess)
+      .catch(this.onLoginFailure);
+  };
   onLoginFailure = (error) => {
     console.log(error.code);
     let state = this.state;
     state.messages.push({content: error.message, status: 'danger'});
     this.setState(state);
-  }
+  };
   render() {
     let messageBlock = this.getMessageBlock();
     return (

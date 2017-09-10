@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import '../css/Reviewer.css';
-import {post} from '../services/ApiService';
+import 'css/Reviewer.css';
+import {post} from 'services/ApiService';
+import {LoginModal} from "./LoginModal";
 
 class Reviewer extends Component {
   constructor(props) {
     super(props);
-    this.state = {rating: props.rating, hover: false, loading: props.loading}
+    this.state = {
+      rating: props.rating, hover: false, loading: props.loading, showLoginModal: false
+    }
   }
   mouseOver = (idx) => {
     this.setState({rating: idx+1, hover: true})
@@ -14,17 +17,22 @@ class Reviewer extends Component {
     this.setState({rating: this.props.rating, hover: false})
   };
   handleClick = (newRating) => {
-    newRating++;
-    let resource = `${this.props.subject}s/${this.props.pg_id}/ratings`;
-    post(resource, {rating: newRating}, this.props.auth)
+    if (!this.props.auth.user) {
+      this.setState({showLoginModal: true, postLoginRating: newRating})
+    } else {
+      newRating++;
+      let resource = `${this.props.subject}s/${this.props.pg_id}/ratings`;
+      post(resource, {rating: newRating}, this.props.auth)
         .then(() => this.props.handleUpdate(newRating))
         .catch(() => null);
-    this.setState({loading: true})
+      this.setState({loading: true, showLoginModal: false})
+    }
   };
   componentWillReceiveProps(nextProps) {
     this.setState({loading: nextProps.loading})
   }
   render() {
+    let loginModal = null;
     let rating = this.state.hover ? this.state.rating : this.props.rating;
     let ratingArray = ratingToArray(rating);
     let heading = `Rate this ${this.props.subject}`;
@@ -34,6 +42,13 @@ class Reviewer extends Component {
     let ulClasses = 'list-inline list-unstyled';
     if (this.state.loading) {
       ulClasses += ' spin';
+    }
+    if (this.state.showLoginModal) {
+      loginModal = <LoginModal
+                      auth={this.props.auth}
+                      closeHandler={() => this.setState({showLoginModal: false})}
+                      successHandler={() => this.handleClick(this.state.postLoginRating)}
+                      showModal={this.state.showLoginModal} />
     }
     return (
         <div className="reviewer feedmee-reviewer text-center">
@@ -50,6 +65,7 @@ class Reviewer extends Component {
             <StarLi handleOut={this.mouseOut} handleOver={this.mouseOver}
                     starPosition={4} highlight={ratingArray[4]} onClick={this.handleClick}/>
           </ul>
+          {loginModal}
         </div>
     )
   }

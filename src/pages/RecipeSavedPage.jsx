@@ -3,6 +3,18 @@ import { AsyncContent} from "components/AsyncContent";
 import { RecipeCard} from "components/recipes/RecipeCard";
 import 'whatwg-fetch';
 import 'url-search-params';
+import {Link} from "react-router-dom";
+
+function noSavedItems(props) {
+  return (
+    <div>
+      <h2>Looks like you haven't saved any recipes!</h2>
+      <p className="lead">Try <Link to="/recipes">searching</Link> or&nbsp;
+        <Link to="/recipes/browse">browsing</Link> recipes,
+        and save the ones you like.</p>
+    </div>
+  )
+}
 
 class RecipeSavedPage extends Component {
   render() {
@@ -19,6 +31,7 @@ class RecipeSavedPage extends Component {
                   mergeResults
                   loginRequired
                   component={RecipeCard}
+                  emptyResultComponent={noSavedItems}
                   extraProps={{saved: true, auth: this.props.auth}}
               />
             </div>

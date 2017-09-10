@@ -29,7 +29,7 @@ class SaveButton extends Component {
       this.setState({showLoginModal: true})
     } else {
       this.sendSaveState();
-      this.setState({loading: true});
+      this.setState({loading: true, showLoginModal: false});
     }
   };
   getLoadingIndicator(bgIsWhite) {
@@ -50,6 +50,7 @@ class SaveButton extends Component {
     if (this.state.showLoginModal) {
       loginModal = <LoginModal auth={this.props.auth}
                                closeHandler={() => this.setState({showLoginModal: false})}
+                               successHandler={this.handleClick}
                                showModal={this.state.showLoginModal} />
     }
     return (

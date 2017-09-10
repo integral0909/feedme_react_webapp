@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {CollectionDetail} from "../components/CollectionDetail";
 import {AsyncContent} from "../components/AsyncContent";
+import {NoMatch} from "./NoMatch";
 
 class CollectionDetailPage extends Component {
   render() {
@@ -10,6 +11,7 @@ class CollectionDetailPage extends Component {
             host={process.env.REACT_APP_HOST}
             resource={resource}
             component={CollectionDetail}
+            show404
             extraProps={{auth: this.props.auth}} />;
   }
 }

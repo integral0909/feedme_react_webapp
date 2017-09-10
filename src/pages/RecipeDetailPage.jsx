@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 import 'url-search-params';
 import {AsyncContent} from "../components/AsyncContent";
 import {RecipeDetail} from "../components/recipes/RecipeDetail";
+import {NoMatch} from "./NoMatch";
 
 class RecipeDetailPage extends Component {
   render() {
@@ -16,6 +17,7 @@ class RecipeDetailPage extends Component {
                   host={process.env.REACT_APP_HOST}
                   resource={resource}
                   component={RecipeDetail}
+                  show404
                   extraProps={{auth: this.props.auth}} />;
     }
     return content

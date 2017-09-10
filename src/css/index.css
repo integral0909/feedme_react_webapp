@@ -15,7 +15,8 @@ h2 {
 h2.white {
   color: #fff;
 }
-h2.pink {
+h2.pink,
+h1.pink {
   color: #E73D57;
 }
 .navbar-red {

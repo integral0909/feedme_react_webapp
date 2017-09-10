@@ -1,0 +1,27 @@
+.alert-circle {
+    background-color: #4A4A4A;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    color: #fff;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 30px;
+}
+.alert-circle h1 {
+    font-size: 80px;
+}
+.alert-circle img {
+    margin-top: -15px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.page-404 h1.pink {
+    font-size:26px;
+    font-weight: bold;
+}
+.page-404 h2 {
+    font-size: 18px;
+    font-weight: bold;
+}

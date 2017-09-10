@@ -3,6 +3,13 @@ import {AsyncContent} from "components/AsyncContent";
 import {RecipeCard} from "components/recipes/RecipeCard";
 
 class SearchResultsPage extends Component {
+  renderNoResults() {
+    return (
+      <div>
+        <h2>Sorry, no recipes match your search</h2>
+      </div>
+    )
+  }
   render() {
     return (
       <div className="container">
@@ -17,6 +24,7 @@ class SearchResultsPage extends Component {
               mergeResults
               loginRequired={false}
               component={RecipeCard}
+              emptyResultsComponent={this.renderNoResults}
               extraProps={{auth: this.props.auth}}
             />
           </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {get} from "../services/ApiService";
 import {getLoadingSpinner} from "../utils";
+import {NoMatch} from "pages/NoMatch";
 
 class AsyncContent extends Component {
   constructor(props) {
@@ -33,13 +34,14 @@ class AsyncContent extends Component {
       results = this.state.results.concat(results);
     }
     this.setState({
-      didLoad: true, loading: false, results: results,
+      didLoad: true, loading: false, results: results, error: false,
       nextPage: json.next, prevPage: json.prev, totalResourceCount: json.count
     })
   }
   handleOneResult(json) {
     this.setState({
-      didLoad: true, loading: false, nextPage: null, prevPage: null, results: [json]
+      didLoad: true, loading: false, nextPage: null, prevPage: null, results: [json],
+      error: false
     })
   }
   requestResource = (props) => {
@@ -47,7 +49,10 @@ class AsyncContent extends Component {
     get(props.resource, props.searchParams, props.auth)
         .then((json) => {
           return json.results ? this.handleManyResults(json) : this.handleOneResult(json);
-      }).catch((ex) => this.setState({didLoad: false, loading: false, error: true}));
+      }).catch((ex) => {
+      console.log('in error handler', ex);
+      this.setState({didLoad: false, loading: false, error: true})
+    });
   };
   unmountChildHandler = (key) => {
     let newResults = Array.from(this.state.results);
@@ -76,11 +81,19 @@ class AsyncContent extends Component {
   }
   render() {
     let DynamicComponent = this.props.component;
+    let EmptyComponent = this.props.emptyResultComponent;
+    let NotFoundComponent = this.props.notFoundComponent || NoMatch;
     let content = null;
+    if (this.props.loginRequired && (!this.props.auth.user)) {
+      content = (<h2 className="text-center">Log in required</h2>)
+    }
+    if (this.props.show404 && this.state.error) {
+      content = <NotFoundComponent/>
+    }
     if (this.state.results.length) {
       content = this.getMainContent(DynamicComponent);
-    } else if (this.props.loginRequired && (!this.props.auth.user)) {
-      content = (<h2 className="text-center">Log in required</h2>)
+    } else if (this.props.emptyResultComponent) {
+      content = <EmptyComponent/>
     }
     return (
         <div>

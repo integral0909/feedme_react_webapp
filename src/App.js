@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
+  Route, Switch
 } from 'react-router-dom';
 import { MainNav } from './components/MainNav';
 import {
@@ -10,6 +10,7 @@ import {
 import { initializeApp } from 'firebase';
 import {RecipeRoutes} from "./components/recipes/RecipesRoutes";
 import {Footer} from "./components/Footer";
+import {NoMatch} from "pages/NoMatch";
 
 class App extends Component {
   constructor(props) {
@@ -32,12 +33,15 @@ class App extends Component {
             auth: {
               user: user,
               authService: this.firebase.auth.bind(this.firebase),
+              unboundAuthService: this.firebase.auth,
               token: id_token
             }
           });
         });
       } else {
-        this.setState({auth: {authService: this.firebase.auth.bind(this.firebase)}});
+        this.setState({auth: {
+          authService: this.firebase.auth.bind(this.firebase),
+        }});
       }
     });
   }
@@ -46,11 +50,14 @@ class App extends Component {
       <Router>
         <div className="Feedmee-App">
           <MainNav auth={this.state.auth} />
-          <Route exact path="/" component={SearchPage}/>
-          <Route path="/impact" component={ImpactPage}/>
-          <Route path="/recipes" render={({match, location}) => {
-            return <RecipeRoutes auth={this.state.auth} match={match} />
-          }} />
+          <Switch>
+            <Route exact path="/" component={SearchPage}/>
+            <Route path="/impact" component={ImpactPage}/>
+            <Route path="/recipes" render={({match, location}) => {
+              return <RecipeRoutes auth={this.state.auth} match={match} />
+            }} />
+            <Route component={NoMatch}/>
+          </Switch>
           <Footer/>
         </div>
       </Router>
