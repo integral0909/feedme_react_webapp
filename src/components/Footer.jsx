@@ -14,8 +14,7 @@ class Footer extends Component {
                   <h4>Feedmee</h4>
                   <ul className="list-unstyled">
                     <li><Link to="/impact">Impact</Link></li>
-                    <li><a href="/team/" target="_blank"
-                           rel="noopener noreferrer">Team</a></li>
+                    <li><Link to="/about">About us</Link></li>
                     <li><a href="/blog/" target="_blank"
                            rel="noopener noreferrer">Blog</a></li>
                   </ul>

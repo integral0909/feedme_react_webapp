@@ -28,7 +28,30 @@ button.btn.btn-default:hover{
   border: 1px solid #FFF;
   outline: none;
 }
-.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover {
   background: transparent;
   color: #f1f1f1;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #df203d;
+  background-color: #E73D57;
+}
+.navbar-nav .open .dropdown-menu {
+  background-color: #282828;
+  border-top: 1px solid #df203d;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu>.active>a,
+.navbar-inverse .navbar-nav .open .dropdown-menu>.active>a:focus,
+.navbar-inverse .navbar-nav .open .dropdown-menu>.active>a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus,
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+  background-color: #000;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+  background-color: #d61f3a;
 }

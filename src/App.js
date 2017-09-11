@@ -11,6 +11,8 @@ import { initializeApp } from 'firebase';
 import {RecipeRoutes} from "./components/recipes/RecipesRoutes";
 import {Footer} from "./components/Footer";
 import {NoMatch} from "pages/NoMatch";
+import {DownloadBar} from "./components/DownloadBar";
+import {AboutPage} from "./pages/AboutPage";
 
 class App extends Component {
   constructor(props) {
@@ -50,9 +52,11 @@ class App extends Component {
       <Router>
         <div className="Feedmee-App">
           <MainNav auth={this.state.auth} />
+          <DownloadBar/>
           <Switch>
             <Route exact path="/" component={SearchPage}/>
             <Route path="/impact" component={ImpactPage}/>
+            <Route path="/about" component={AboutPage}/>
             <Route path="/recipes" render={({match, location}) => {
               return <RecipeRoutes auth={this.state.auth} match={match} />
             }} />

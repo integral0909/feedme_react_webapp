@@ -1,0 +1,24 @@
+.download-navbar {
+    top: 60px;
+    background-color: #4A4A4A;
+    min-height: 45px;
+    z-index: 1000;
+}
+.download-navbar .navbar-nav>li>a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.download-navbar .navbar-nav>li.nav-btn>a {
+    border: 1px solid #FFF;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    margin-top: 9px;
+    margin-left: 4px;
+    margin-right: 10px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 400;
+}
+body {
+    padding-top: 110px;
+}
