@@ -268,36 +268,97 @@ class TeamSection extends Component {
 
 const DrivingFeedmeeSection = (props) => {
   return (
-    <Grid className="section-hiw">
-      <Col sm={6}>
-        <h2 className="pink">The driving force behind Feedmee</h2>
-        <h4>Why did we start Feedmee</h4>
-        <p>
-          We want to stop world hunger with one simple idea: What if every time you eat out, you could help someone in need eat, too. Many people are unaware that the world produces enough food to feed everyone, but one in nine people in the world still goes hungry.
-        </p>
-        <p>
-          Here at Feedmee we say enough is enough. We have taken a stand against hunger by teaming up with local businesses that care about the community and those in need.
-        </p>
-        <h4>The idea didn’t come from nowhere</h4>
-        <p>
-          Tyler Spooner, the co-founder of Feedmee, became an orphan at the age of 10 and grew up in foster homes. In his early years he spent some time on the streets and relied heavily on charities for food and support.
-        </p>
-        <blockquote>
-          <p>“I wanted to find away to help people that are in the hard situation that I faced growing up, so I came up with the idea of Feedmee.”</p>
-        </blockquote>
-        <p>
-          Tyler is passionate about fighting the hunger problems that many children face every year. He recalls numerous times in his youth, going to school hungry without food and wishing he had a packed lunch like the other kids in the class.
-        </p>
-      </Col>
-      <Col sm={5} smOffset={1}>
-        <img src={props.imageTop} alt={props.imageToplt}/>
-        <img src={props.imageBottom} alt={props.imageBottomAlt}/>
-      </Col>
-    </Grid>
+    <div className="section-hiw">
+      <Grid>
+        <Col sm={6}>
+          <h2 className="pink">The driving force behind Feedmee</h2>
+          <h4>Why did we start Feedmee</h4>
+          <p>
+            We want to stop world hunger with one simple idea: What if every time you eat out, you could help someone in need eat, too. Many people are unaware that the world produces enough food to feed everyone, but one in nine people in the world still goes hungry.
+          </p>
+          <p>
+            Here at Feedmee we say enough is enough. We have taken a stand against hunger by teaming up with local businesses that care about the community and those in need.
+          </p>
+          <h4>The idea didn’t come from nowhere</h4>
+          <p>
+            Tyler Spooner, the co-founder of Feedmee, became an orphan at the age of 10 and grew up in foster homes. In his early years he spent some time on the streets and relied heavily on charities for food and support.
+          </p>
+          <blockquote>
+            <p>“I wanted to find away to help people that are in the hard situation that I faced growing up, so I came up with the idea of Feedmee.”</p>
+          </blockquote>
+          <p>
+            Tyler is passionate about fighting the hunger problems that many children face every year. He recalls numerous times in his youth, going to school hungry without food and wishing he had a packed lunch like the other kids in the class.
+          </p>
+        </Col>
+        <Col sm={5} smOffset={1}>
+          <img src={props.imageTop} alt={props.imageToplt}/>
+          <img src={props.imageBottom} alt={props.imageBottomAlt}/>
+        </Col>
+      </Grid>
+    </div>
   )
 }
 
+class ImpactEventsPreview extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {events: [
+      {
+        hidden: false,
+        link: "https://medium.com/feedmee-app/feedmee-expresstival-2016-4188e40da7dc",
+        image: "https://cdn.feedmeeapp.com/static/images/event-image@2x.jpg",
+        name: "Expresstival 2016",
+        desc: "PERTH AUSTRALIA"
+      },
+      {
+        hidden: false,
+        link: "https://medium.com/feedmee-app/feedmee-food-challenges-773701228a07",
+        image: "https://cdn-images-1.medium.com/max/1600/1*gUGWwebYDgGS_jkxhcAxUw.jpeg",
+        name: "Feedmee Food Challenges 2016",
+        desc: "PERTH AUSTRALIA"
+      },
+      {
+        hidden: false,
+        link: "https://medium.com/feedmee-app/christmas-is-for-everyone-c1ceb46d6529",
+        image: "https://cdn-images-1.medium.com/max/2000/1*e8JQak1LezIQhnBShZzmWA.jpeg",
+        name: "Christmas Is For Everyone",
+        desc: "AUSTRALIA"
+      },
+      {
+        hidden: true,
+        link: "https://medium.com/feedmee-app/easter-is-for-everyone-e7c64fb8626a",
+        image: "https://cdn-images-1.medium.com/max/2000/1*ULZK-7bu3qu3Ah8Bm-04yQ.jpeg",
+        name: "Easter Is For Everyone",
+        desc: "AUSTRALIA"
+      }
+    ]}
+  }
+  render() {
+    return (
+      <div className="section-events">
+        <div className="container">
+          <h2 className="pink">Impact Events</h2>
+          <h4>We run impact events that aim to fight hunger, one meal at a time.</h4>
+          {this.state.events.filter((e) => !e.hidden).map(
+            (event, k) => (
+              <div className="col-sm-4 event-list" key={k}>
+                <a href={event.link}>
+                  <img src={event.image} alt={event.name}/>
+                    <div className="event-desc">
+                      <p>{event.name}</p>
+                      <span>{event.desc}</span>
+                    </div>
+                </a>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    )
+  }
+}
+
 export {
-  OpeningSection, DownloadSection, MealsDonatedSection,
+  OpeningSection, DownloadSection, MealsDonatedSection, ImpactEventsPreview,
   FeaturedPressSection, BenefitsSection, TeamSection, DrivingFeedmeeSection
 }

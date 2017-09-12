@@ -245,6 +245,7 @@ a:focus {
   border-radius: 8px 8px 0 0;
   padding: 50px 0;
   margin-bottom: 0;
+  border-bottom: none;
 }
 
 /*Section Benefits*/
@@ -856,7 +857,25 @@ a:focus {
 .section-hiw img {
   margin-top: 25px;
 }
-
+.section-hiw {
+  margin-top: 150px;
+  padding-bottom: 80px;
+  position: relative;
+  background-color: #FBFBFB;
+}
+.section-hiw:before {
+  content: "";
+  background: url(https://cdn.feedmeeapp.com/static/images/image-divider.png)no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-position: top center;
+  image-rendering: -webkit-optimize-contrast;
+  width: 100%;
+  height: 159px;
+  position: absolute;
+  top: -159px;
+  left: 0;
+}
 
 /*Footer*/
 
