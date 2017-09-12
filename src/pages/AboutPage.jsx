@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import {
-  BenefitsSection, MealsDonatedSection, OpeningSection
+  BenefitsSection, FeaturedPressSection, MealsDonatedSection,
+  OpeningSection, TeamSection
 } from "./partials/StaticPartials";
+import happyPie from 'assets/happypie.svg';
 
 class AboutPage extends Component {
   render() {
     return (
       <main id="main" className="impact">
         <OpeningSection/>
-        <div className="section-help" style={{margin: '55px 0'}}>
+        <div className="section-help" style={{backgroundColor: '#FFF'}}>
           <div className="container">
+            <img src={happyPie} alt="Happy pie" />
             <h2 className="pink">We are taking the decision making out of eating</h2>
             <p style={{fontSize: '18px', color: '#444'}}>
               So that you can spend <strong>more time eating, less time thinking.</strong><br/>
@@ -19,6 +22,8 @@ class AboutPage extends Component {
         </div>
         <BenefitsSection/>
         <MealsDonatedSection/>
+        <TeamSection/>
+        <FeaturedPressSection/>
       </main>
     )
   }

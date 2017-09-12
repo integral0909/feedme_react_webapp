@@ -135,7 +135,7 @@ class MealsDonatedSection extends Component {
   }
   render() {
     return (
-      <div className="section-help">
+      <div className="section-help" style={{paddingBottom: 0}}>
         <Grid className="card card-bordered">
           <Col sm={5}>
             <img src="https://cdn.feedmeeapp.com/static/images/box-hearth@2x.png"
@@ -160,7 +160,113 @@ class MealsDonatedSection extends Component {
   }
 }
 
+class TeamSection extends Component {
+  linkedinIcon = "https://cdn.feedmeeapp.com/static/images/linkedin-color.svg";
+  constructor(props) {
+    super(props);
+    this.state = {
+      team: [
+        {
+          imageSrc: "https://cdn.feedmeeapp.com/static/images/tyler.jpg",
+          name: "Tyler Spooner",
+          title: "Co-Founder &amp; CEO",
+          linkedin: "https://www.linkedin.com/in/tyler-spooner-44ba1792/"
+        },
+        {
+          imageSrc: "https://cdn.feedmeeapp.com/static/images/brenda.jpg",
+          name: "Brenda Lai",
+          title: "Co-Founder &amp; COO",
+          linkedin: "https://www.linkedin.com/in/brenda-lai-a24925123/"
+        },
+        {
+          imageSrc: "https://cdn.feedmeeapp.com/static/images/anthony.jpg",
+          name: "Anthony Manning Franklin",
+          title: "CTO",
+          linkedin: "https://www.linkedin.com/in/anthonymanningfranklin/"
+        },
+        {
+          imageSrc: "https://cdn.feedmeeapp.com/static/images/jose.jpg",
+          name: "Jose Saavedra-Rosas",
+          title: "Chief Data Scientist",
+          linkedin: "https://www.linkedin.com/in/jose-saavedra-rosas-91a08414/"
+        },
+      ],
+      advisors: [
+        {
+          imageSrc: "https://cdn.feedmeeapp.com/static/images/tim.jpg",
+          name: "Tim Brewer",
+          title: "Growth Strategy",
+          linkedin: "https://www.linkedin.com/in/timdbrewer/"
+        },
+        {
+          imageSrc: "https://cdn.feedmeeapp.com/static/images/tomk.jpg",
+          name: "Tom Kooy",
+          title: "Board & Strategic Advisory",
+          linkedin: "https://www.linkedin.com/in/tom-kooy-14ba3b73/"
+        },
+        {
+          imageSrc: "https://cdn.feedmeeapp.com/static/images/juan.jpg",
+          name: "Juan Otero",
+          title: "Restaurant Industry",
+          linkedin: "https://www.linkedin.com/in/joterovila/"
+        },
+      ]
+    }
+  }
+  render() {
+    return (
+      <div className="section-team">
+        <div className="container">
+          <h2 className="pink">Meet the team</h2>
+          <div className="team-wrapper">
+            <h3>Management Team</h3>
+            <div className="team-management">
+              {this.state.team.map(
+                (member, key) => (
+                  <div className="team-list" key={key}>
+                    <div className="team-image">
+                      <img src={member.imageSrc} alt={member.name}/>
+                    </div>
+                    <div className="team-desc">
+                      <h3>{member.name}</h3>
+                      <p>{member.title}</p>
+                      <a href={member.linkedin} target="_blank">
+                        <img src={this.linkedinIcon} alt="linkedin"/>
+                      </a>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="team-wrapper">
+            <h3>Advisors</h3>
+            <div className="team-advisors">
+              {this.state.advisors.map(
+                (member, key) => (
+                  <div className="team-list" key={key}>
+                    <div className="team-image">
+                      <img src={member.imageSrc} alt={member.name}/>
+                    </div>
+                    <div className="team-desc">
+                      <h3>{member.name}</h3>
+                      <p>{member.title}</p>
+                      <a href={member.linkedin} target="_blank">
+                        <img src={this.linkedinIcon} alt="linkedin"/>
+                      </a>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
 export {
   OpeningSection, DownloadSection, MealsDonatedSection,
-  FeaturedPressSection, BenefitsSection
+  FeaturedPressSection, BenefitsSection, TeamSection
 }
