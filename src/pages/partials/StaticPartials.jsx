@@ -271,22 +271,25 @@ const DrivingFeedmeeSection = (props) => {
     <Grid className="section-hiw">
       <Col sm={6}>
         <h2 className="pink">The driving force behind Feedmee</h2>
-        <h3>Why did we start Feedmee</h3>
+        <h4>Why did we start Feedmee</h4>
         <p>
           We want to stop world hunger with one simple idea: What if every time you eat out, you could help someone in need eat, too. Many people are unaware that the world produces enough food to feed everyone, but one in nine people in the world still goes hungry.
         </p>
         <p>
           Here at Feedmee we say enough is enough. We have taken a stand against hunger by teaming up with local businesses that care about the community and those in need.
         </p>
-        <h3>The idea didn’t come from nowhere</h3>
-        <p>Tyler Spooner, the co-founder of Feedmee, became an orphan at the age of 10 and grew up in foster homes. In his early years he spent some time on the streets and relied heavily on charities for food and support.
-
-        
-
-
-          Tyler is passionate about fighting the hunger problems that many children face every year. He recalls numerous times in his youth, going to school hungry without food and wishing he had a packed lunch like the other kids in the class. </p>
+        <h4>The idea didn’t come from nowhere</h4>
+        <p>
+          Tyler Spooner, the co-founder of Feedmee, became an orphan at the age of 10 and grew up in foster homes. In his early years he spent some time on the streets and relied heavily on charities for food and support.
+        </p>
+        <blockquote>
+          <p>“I wanted to find away to help people that are in the hard situation that I faced growing up, so I came up with the idea of Feedmee.”</p>
+        </blockquote>
+        <p>
+          Tyler is passionate about fighting the hunger problems that many children face every year. He recalls numerous times in his youth, going to school hungry without food and wishing he had a packed lunch like the other kids in the class.
+        </p>
       </Col>
-      <Col sm={6}>
+      <Col sm={5} smOffset={1}>
         <img src={props.imageTop} alt={props.imageToplt}/>
         <img src={props.imageBottom} alt={props.imageBottomAlt}/>
       </Col>
@@ -296,5 +299,5 @@ const DrivingFeedmeeSection = (props) => {
 
 export {
   OpeningSection, DownloadSection, MealsDonatedSection,
-  FeaturedPressSection, BenefitsSection, TeamSection
+  FeaturedPressSection, BenefitsSection, TeamSection, DrivingFeedmeeSection
 }

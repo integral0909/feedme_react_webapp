@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Grid, Col} from 'react-bootstrap';
 import 'css/impact.css';
 import {
-  DownloadSection, FeaturedPressSection, MealsDonatedSection,
+  DownloadSection, DrivingFeedmeeSection, FeaturedPressSection, MealsDonatedSection,
   OpeningSection
 } from "./partials/StaticPartials";
 import feeIcon from 'assets/fee.svg';
@@ -38,6 +38,9 @@ class ImpactPage extends Component {
             </Col>
           </Grid>
         </div>
+        <DrivingFeedmeeSection
+          imageTop={teamPhoto}  imageTopAlt="The Feedmee team"
+          imageBottom={tylerPitch} imageBottomAlt="Tyler Spooner" />
         <MealsDonatedSection/>
         <FeaturedPressSection/>
       </main>
