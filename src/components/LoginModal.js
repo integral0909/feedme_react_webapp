@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { EmailLogin } from './EmailLogin'
 import {FacebookLogin} from "./FacebookLogin";
 import {ForgotPassword} from "./ForgotPassword";
+import {Signup} from "./Signup";
 
 class LoginModal extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class LoginModal extends Component {
                   onClick={() => this.handleClick('login')}>
             <i className="fa fa-arrow-left"/>
           </Button>
-          Test
+          <Signup style={{margin:'80px 0'}} auth={this.props.auth} silenceFields/>
           <Button bsStyle="link" onClick={this.closeModal}>Close</Button>
         </Modal.Body>
       )

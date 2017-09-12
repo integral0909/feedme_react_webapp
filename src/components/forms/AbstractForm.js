@@ -41,11 +41,13 @@ class AbstractForm extends Component {
         } else {
           input = this.state[inputName];
         }
-        if (input.status === 'error') {
-          msgs.push({content: 'Error in '+inputName, status: 'danger'})
-        }
-        if (input.status === 'warning') {
-          msgs.push({content: 'Warning in '+inputName, status: 'warning'})
+        if (!this.props.silenceFields) {
+          if (input.status === 'error') {
+            msgs.push({content: 'Error in '+inputName, status: 'danger'})
+          }
+          if (input.status === 'warning') {
+            msgs.push({content: 'Warning in '+inputName, status: 'warning'})
+          }
         }
       }
     }
