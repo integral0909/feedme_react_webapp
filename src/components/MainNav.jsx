@@ -5,6 +5,7 @@ import logo from '../assets/feedmee_logo.png';
 import '../css/MainNavbar.css'
 import { LoginModal } from './LoginModal'
 import {LogoutModal} from "./LogoutModal";
+import {Link} from "react-router-dom";
 
 
 class MainNav extends Component {
@@ -45,7 +46,7 @@ class MainNav extends Component {
         <Navbar inverse fixedTop className="navbar-red">
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/"><img src={logo} alt="Feedmee" /></a>
+              <Link to="/"><img src={logo} alt="Feedmee" /></Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

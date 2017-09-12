@@ -20,7 +20,7 @@ class FacebookLogin extends Component {
               onClick={this.handleClick}
       >
         <span className="pull-left"><i className="fa fa-facebook-official pull-left"/></span>
-        Login with Facebook
+        Continue with Facebook
       </Button>
     )
   }

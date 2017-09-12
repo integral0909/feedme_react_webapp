@@ -13,6 +13,7 @@ import {Footer} from "./components/Footer";
 import {NoMatch} from "pages/NoMatch";
 import {DownloadBar} from "./components/DownloadBar";
 import {AboutPage} from "./pages/AboutPage";
+import {ForgotPasswordPage} from "./pages/ForgotPasswordPage";
 
 class App extends Component {
   constructor(props) {
@@ -57,9 +58,12 @@ class App extends Component {
             <Route exact path="/" component={SearchPage}/>
             <Route path="/impact" component={ImpactPage}/>
             <Route path="/about" component={AboutPage}/>
-            <Route path="/recipes" render={({match, location}) => {
-              return <RecipeRoutes auth={this.state.auth} match={match} />
-            }} />
+            <Route path="/recipes"
+                   render={({match, location}) =>  <RecipeRoutes auth={this.state.auth}
+                                                                 match={match} />}
+            />
+            <Route path="/reset-password"
+                   render={() => <ForgotPasswordPage auth={this.state.auth}/>}/>
             <Route component={NoMatch}/>
           </Switch>
           <Footer/>

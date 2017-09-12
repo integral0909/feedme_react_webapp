@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import {Grid, Col} from 'react-bootstrap';
 import 'css/impact.css';
 import {
-  DownloadSection, DrivingFeedmeeSection, FeaturedPressSection, ImpactEventsPreview,
-  MealsDonatedSection,
-  OpeningSection
+  DrivingFeedmeeSection, FeaturedPressSection, ImpactEventsPreview,
+  MealsDonatedSection, OpeningSection
 } from "./partials/StaticPartials";
 import feeIcon from 'assets/fee.svg';
 import findIcon from 'assets/find.svg';
