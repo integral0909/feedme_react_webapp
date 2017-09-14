@@ -22,6 +22,7 @@ class SearchResultsPage extends Component {
               resource="recipes"
               searchParams={new URLSearchParams(this.props.location.search)}
               mergeResults
+              infiniteScrolling
               loginRequired={false}
               component={RecipeCard}
               emptyResultsComponent={this.renderNoResults}

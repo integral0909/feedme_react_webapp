@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {get} from "../services/ApiService";
 import {getLoadingSpinner} from "../utils";
 import {NoMatch} from "pages/NoMatch";
+import Waypoint from 'react-waypoint';
 
 class AsyncContent extends Component {
   constructor(props) {
@@ -15,6 +16,9 @@ class AsyncContent extends Component {
       results: [],
       totalResourceCount: 0
     };
+    if (this.props.infiniteScrolling) {
+      this.scrollTriggerBuffer = 10;
+    }
   }
   componentDidMount = () => {
     if (this.props.auth.token || !this.props.loginRequired) {
@@ -47,12 +51,23 @@ class AsyncContent extends Component {
   requestResource = (props) => {
     this.setState({loading: true, didLoad: false});
     get(props.resource, props.searchParams, props.auth)
-        .then((json) => {
-          return json.results ? this.handleManyResults(json) : this.handleOneResult(json);
-      }).catch((ex) => {
-      console.log('in error handler', ex);
-      this.setState({didLoad: false, loading: false, error: true})
+      .then((json) => {
+        return json.results ? this.handleManyResults(json) : this.handleOneResult(json);
+      })
+      .catch((ex) => {
+        this.setState({didLoad: false, loading: false, error: true})
     });
+  };
+  loadNextPage = () => {
+    if (this.state.results === this.state.totalResourceCount) {
+      return
+    }
+    let urlArray = this.nextPage.split('?');
+    let searchParams = new URLSearchParams('');
+    if (urlArray.length > 1) {
+      searchParams = new URLSearchParams(urlArray[1]);
+    }
+    this.requestResource(Object.assign({}, this.props, {searchParams: searchParams}))
   };
   unmountChildHandler = (key) => {
     let newResults = Array.from(this.state.results);
@@ -71,9 +86,18 @@ class AsyncContent extends Component {
           <div>
             {this.state.results.map((item, idx) => {
               let key = item.pg_id ? item.pg_id : idx;
+              if (this.props.infiniteScrolling && this.state.nextPage) {
+                if (idx === (this.state.results.length - this.scrollTriggerBuffer)) {
+                  return (
+                    <Waypoint onEnter={this.loadNextPage}>
+                      <DynamicComponent data={item} {...this.props.extraProps} key={key}
+                                        unMountMe={this.unmountChildHandler} idx={idx} />
+                    </Waypoint>
+                  )
+                }
+              }
               return <DynamicComponent data={item} {...this.props.extraProps} key={key}
-                                       unMountMe={this.unmountChildHandler} idx={idx}
-              />
+                                       unMountMe={this.unmountChildHandler} idx={idx} />
             })}
           </div>
       );
@@ -85,7 +109,7 @@ class AsyncContent extends Component {
     let NotFoundComponent = this.props.notFoundComponent || NoMatch;
     let content = null;
     if (this.props.loginRequired && (!this.props.auth.user)) {
-      content = (<h2 className="text-center">Log in required</h2>)
+      content = <h2 className="text-center">Log in required</h2>
     }
     if (this.props.show404 && this.state.error) {
       content = <NotFoundComponent/>
@@ -95,11 +119,7 @@ class AsyncContent extends Component {
     } else if (this.props.emptyResultComponent) {
       content = <EmptyComponent/>
     }
-    return (
-        <div>
-          {content || getLoadingSpinner(this.state.loading)}
-        </div>
-    );
+    return content || getLoadingSpinner(this.state.loading);
   }
 }
 

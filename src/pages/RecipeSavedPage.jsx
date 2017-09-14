@@ -29,6 +29,7 @@ class RecipeSavedPage extends Component {
                   resource='recipes'
                   searchParams={new URLSearchParams('?saved=true')}
                   mergeResults
+                  infiniteScrolling
                   loginRequired
                   component={RecipeCard}
                   emptyResultComponent={noSavedItems}

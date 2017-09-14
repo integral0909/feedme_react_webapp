@@ -1,0 +1,7 @@
+{
+  "assetManifest": "./build/asset-manifest.json",
+  "indexTemplate": "./indexTemplate.html",
+  "indexDestination": "./../../fm-django/templates/react_base.html",
+  "staticSrc": "build/static",
+  "staticDest": "../../fm-django/common-static/"
+}
