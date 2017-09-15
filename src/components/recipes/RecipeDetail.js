@@ -100,7 +100,7 @@ class RecipeDetail extends Component {
                             bsStyle="danger" bsSize="large" className="btn-red">View Instructions</Button>
                     <div className="card bordered border-dashed padded margin-top">
                       <p>This recipe was originally from <HostLink url={source_url} />.</p>
-                      <p>You can’t view the recipe on Feedmee because we respect the original author and prefer to refer you to their sites. Read more.</p>
+                      <p>You can’t view the recipe on Feedmee because we respect the original author and prefer to refer you to their sites.</p>
                       <p>If you are the original author, you can claim your profile now & contribute.</p>
                     </div>
                   </div>

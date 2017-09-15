@@ -43,7 +43,7 @@ class MainNav extends Component {
       )
     }
     return (
-        <Navbar inverse fixedTop className="navbar-red">
+        <Navbar inverse fixedTop collapseOnSelect className="navbar-red">
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/"><img src={logo} alt="Feedmee" /></Link>
@@ -55,14 +55,14 @@ class MainNav extends Component {
               <LinkContainer to="/impact">
                 <NavItem eventKey={1}>Impact</NavItem>
               </LinkContainer>
-              <LinkContainer to="/recipes/" exact>
+              <LinkContainer to="/recipe/" exact>
                 <NavItem eventKey={2}>Search</NavItem>
               </LinkContainer>
-              <LinkContainer to="/recipes/browse">
+              <LinkContainer to="/recipe/browse">
                 <NavItem eventKey={2}>Browse</NavItem>
               </LinkContainer>
               <NavDropdown eventKey={3} title="My Recipes" id="basic-nav-dropdown">
-                <LinkContainer to="/recipes/saved">
+                <LinkContainer to="/recipe/saved">
                   <MenuItem eventKey={3.1}>Saved recipes</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/shopping-list">

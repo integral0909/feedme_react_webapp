@@ -2,7 +2,8 @@
   height: 22px;
 }
 .navbar-inverse .navbar-toggle {
-  border-color: #FFF;
+  border: none;
+  margin-top: 19px;
 }
 .navbar-inverse .navbar-nav>li>a {
   color: #FFF;
@@ -35,7 +36,7 @@ button.btn.btn-default:hover{
   color: #f1f1f1;
 }
 .navbar-inverse .navbar-collapse,
-.navbar-inverse .navbar-form {
+.navbar-red .navbar-form{
   border-color: #df203d;
   background-color: #E73D57;
 }

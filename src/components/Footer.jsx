@@ -22,9 +22,9 @@ class Footer extends Component {
                 <div className="col-sm-2">
                   <h4>Recipes</h4>
                   <ul className="list-unstyled">
-                    <li><Link to="/recipes/search">Search recipes</Link></li>
-                    <li><Link to="/recipes/browse">Browse recipes</Link></li>
-                    <li><Link to="/recipes/saved">Saved recipes</Link></li>
+                    <li><Link to="/recipe/search">Search recipes</Link></li>
+                    <li><Link to="/recipe/browse">Browse recipes</Link></li>
+                    <li><Link to="/recipe/saved">Saved recipes</Link></li>
                   </ul>
                 </div>
                 {/*<div className="col-sm-2">*/}

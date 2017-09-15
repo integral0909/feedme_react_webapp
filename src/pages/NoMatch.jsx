@@ -19,9 +19,9 @@ class NoMatch extends Component {
             <Col className="center-block text-left" style={{display: 'inline-block'}}>
               <p>Here are some helpful links instead:</p>
               <ul className="list-unstyled">
-                <li><Link to="/recipes/search">Search recipes</Link></li>
-                <li><Link to="/recipes/browse">Browse recipes</Link></li>
-                <li><Link to="/recipes/saved">Saved recipes</Link></li>
+                <li><Link to="/recipe/search">Search recipes</Link></li>
+                <li><Link to="/recipe/browse">Browse recipes</Link></li>
+                <li><Link to="/recipe/saved">Saved recipes</Link></li>
                 <li><Link to="/impact">Impact</Link></li>
                 <li><a href="/team/" target="_blank"
                        rel="noopener noreferrer">Team</a></li>

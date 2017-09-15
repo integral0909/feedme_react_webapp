@@ -8,7 +8,7 @@ class DownloadBar extends Component {
   render() {
     return (
       <Navbar inverse fixedTop className="download-navbar">
-        <Nav pullRight>
+        <Nav pullRight className="hidden-xs">
           <Navbar.Text>Download app</Navbar.Text>
           <NavItem eventKey={2} href={this.appStoreLink} className="nav-btn">
             <i className="fa fa-apple"/> AppStore
@@ -17,6 +17,13 @@ class DownloadBar extends Component {
             <i className="fa fa-android"/> PlayStore
           </NavItem>
         </Nav>
+        <ul className="list-inline visible-xs pull-left">
+          <li>Download Feedmee App</li>
+        </ul>
+        <ul className="list-inline visible-xs pull-right">
+          <li><a href={this.appStoreLink}><i className="fa fa-apple"/></a></li>
+          <li><a href={this.androidLink}><i className="fa fa-android"/></a></li>
+        </ul>
       </Navbar>
     )
   }

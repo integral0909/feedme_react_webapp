@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {AspectConstrainedImage} from "./AspectConstrainedImage";
 import {Glyphicon, Table} from 'react-bootstrap';
+import slugify from "slugify";
+import {trimNearestWord} from "../utils";
 
 class CollectionCard extends Component {
   render() {
     let collectionLocation = {
-      pathname: `/recipes/browse/${this.props.data.slug}`,
+      pathname: `/recipe/browse/${this.props.data.slug}`,
       state: {collection: this.props.data}
     };
     return (
@@ -28,7 +30,8 @@ class CollectionCard extends Component {
                 <tbody>
                 {this.props.data.recipes.slice(0, 3).map(
                     (rcp) =>  <tr key={rcp.pg_id}><td>
-                      <Link to={`/recipes/${rcp.pg_id}`}>{rcp.name}
+                      <Link to={`/recipe/${rcp.pg_id}/${slugify(rcp.name, {lower: true})}`}>
+                        {trimNearestWord(rcp.name, 45)}
                         <Glyphicon glyph="menu-right" className="pull-right" />
                       </Link>
                     </td></tr>

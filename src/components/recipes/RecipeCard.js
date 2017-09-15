@@ -5,6 +5,8 @@ import {secondsToDisplayTime} from "utils";
 import {RecipeToolbar} from "./RecipeToolbar";
 import {AspectConstrainedImage} from "components/AspectConstrainedImage";
 import {SourceLink} from "components/SourceLink";
+import slugify from 'slugify';
+import {trimNearestWord} from "utils";
 
 
 class RecipeCard extends Component {
@@ -23,15 +25,17 @@ class RecipeCard extends Component {
   render() {
     let prepTime = secondsToDisplayTime(this.props.data.prep_time_seconds);
     let cookTime = secondsToDisplayTime(this.props.data.cook_time_seconds);
+    let recipeName = this.props.data.name;
+    let keywords = this.props.data.keywords;
     let recipeLocation = {
-      pathname: `/recipes/${this.props.data.pg_id}`,
+      pathname: `/recipe/${this.props.data.pg_id}/${slugify(recipeName, {lower: true})}`,
       state: {recipe: this.props.data}
     };
     let shareUrl = `https://www.feedmeeapp.com${recipeLocation.pathname}`;
     return (
       <div className={`card recipe-card hover-shadow fade ${this.state.hidden ? 'fade-out' : ''}`}>
         <div className="row">
-          <div className="col-sm-6">
+          <div className="col-sm-6 image-column">
             <Link to={recipeLocation}>
               <AspectConstrainedImage
                   imageUrl={this.props.data.image_url}
@@ -41,9 +45,9 @@ class RecipeCard extends Component {
               />
             </Link>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-6 detail-column">
             <Link to={recipeLocation}>
-              <h2 className="pink">{this.props.data.name}</h2>
+              <h2 className="pink" title={recipeName}>{trimNearestWord(recipeName, 50)}</h2>
             </Link>
             <SourceLink url={this.props.data.source_url} type="Recipe"/>
             <div className="row card-row">
@@ -66,15 +70,16 @@ class RecipeCard extends Component {
             </div>
             <div className="row card-row">
               <div className="col-xs-12">
-                <small className="text-muted">DIETARY INFO</small><br />
+                {keywords.length > 0 ? <small className="text-muted">DIETARY INFO</small> : null}
+                <br />
                 <ul className="list-inline">
-                  {this.props.data.keywords.map((item, i) => {
+                  {keywords.map((item, i) => {
                     return (<li key={i}>{item}</li>)
                   })}
                 </ul>
               </div>
             </div>
-            <div className="row card-row">
+            <div className="row card-row-sticky-bottom">
               <div className="col-xs-12">
                 <RecipeToolbar url={shareUrl} pg_id={this.props.data.pg_id}
                                auth={this.props.auth} title={this.props.data.name}

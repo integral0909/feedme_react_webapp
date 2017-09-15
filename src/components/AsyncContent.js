@@ -59,10 +59,10 @@ class AsyncContent extends Component {
     });
   };
   loadNextPage = () => {
-    if (this.state.results === this.state.totalResourceCount) {
+    if (this.state.results.length === this.state.totalResourceCount) {
       return
     }
-    let urlArray = this.nextPage.split('?');
+    let urlArray = this.state.nextPage.split('?');
     let searchParams = new URLSearchParams('');
     if (urlArray.length > 1) {
       searchParams = new URLSearchParams(urlArray[1]);
@@ -90,8 +90,10 @@ class AsyncContent extends Component {
                 if (idx === (this.state.results.length - this.scrollTriggerBuffer)) {
                   return (
                     <Waypoint onEnter={this.loadNextPage}>
-                      <DynamicComponent data={item} {...this.props.extraProps} key={key}
+                      <div>
+                        <DynamicComponent data={item} {...this.props.extraProps} key={key}
                                         unMountMe={this.unmountChildHandler} idx={idx} />
+                      </div>
                     </Waypoint>
                   )
                 }

@@ -16,4 +16,15 @@ function getLoadingSpinner(isLoading, type, color, width) {
                                          className="center-block" /></span> : null;
 };
 
-export {extractHostname, secondsToDisplayTime, getLoadingSpinner};
+function trimNearestWord(string, len) {
+  if (string.length > len) {
+    let trimPoint = string.lastIndexOf(' ', len);
+    if (trimPoint === -1) {
+      trimPoint = len-3;
+    }
+    return string.substring(0, trimPoint) + '...';
+  }
+  return string
+}
+
+export {extractHostname, secondsToDisplayTime, getLoadingSpinner, trimNearestWord};

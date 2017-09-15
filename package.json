@@ -25,6 +25,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@antman/react-django-deploy": "^1.0.6"
+    "@antman/react-django-deploy": "^1.0.6",
+    "slugify": "^1.2.1"
   }
 }

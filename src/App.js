@@ -58,7 +58,7 @@ class App extends Component {
             <Route exact path="/" component={SearchPage}/>
             <Route path="/impact" component={ImpactPage}/>
             <Route path="/about" component={AboutPage}/>
-            <Route path="/recipes"
+            <Route path="/recipe"
                    render={({match, location}) =>  <RecipeRoutes auth={this.state.auth}
                                                                  match={match} />}
             />

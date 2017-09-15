@@ -3,6 +3,7 @@
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
+  padding-right:15px;
   /* -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); */
   /* box-shadow: 0 1px 1px rgba(0,0,0,.05); */
 }
@@ -18,8 +19,8 @@
   margin-top: 0;
 }
 .card-row {
-  margin-top: 20px;
-  margin-bottom: 24px;
+  margin-top: 18px;
+  margin-bottom: 22px;
 }
 .card .text-muted {
   color: #9B9B9B;
@@ -55,4 +56,13 @@
 .card.collection-card .pull-bottom {
   position: absolute;
   bottom: 15px;
+}
+.recipe-card > .row > .detail-column {
+  height:290px;
+  position: relative;
+}
+.recipe-card .card-row-sticky-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
 }

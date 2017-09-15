@@ -9,8 +9,8 @@ function noSavedItems(props) {
   return (
     <div>
       <h2>Looks like you haven't saved any recipes!</h2>
-      <p className="lead">Try <Link to="/recipes">searching</Link> or&nbsp;
-        <Link to="/recipes/browse">browsing</Link> recipes,
+      <p className="lead">Try <Link to="/recipe">searching</Link> or&nbsp;
+        <Link to="/recipe/browse">browsing</Link> recipes,
         and save the ones you like.</p>
     </div>
   )

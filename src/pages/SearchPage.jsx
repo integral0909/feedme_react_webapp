@@ -42,7 +42,7 @@ class SearchPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let ings = this.state.ingredients.map(ing => ing.name).join('&ingredient=');
-    this.props.history.push('/recipes/search?ingredient='+ings)
+    this.props.history.push('/recipe/search?ingredient='+ings)
   };
   reduceSuggestionsByIngredients(ingredients, suggestions) {
     let ing_ids = ingredients.map((ing) => ing.pg_id);

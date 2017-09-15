@@ -22,3 +22,19 @@
 body {
     padding-top: 110px;
 }
+@media (max-width: 768px) {
+  .download-navbar .list-inline {
+    color: #f1f1f1;
+    padding-top: 10px;
+  }
+  .download-navbar .list-inline > li > a {
+    color: #FFF;
+    font-size: 24px;
+    line-height: 24px;
+    margin-left: 10px;
+  }
+  .download-navbar .list-inline > li {
+    line-height:24px;
+    padding-top: 3px;
+  }
+}
