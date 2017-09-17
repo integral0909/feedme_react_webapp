@@ -80,6 +80,7 @@ class AsyncContent extends Component {
           <div>
             <DynamicComponent data={this.state.results} {...this.props.extraProps}
                               loading={this.state.loading} />
+            {getLoadingSpinner(this.state.loading)}
           </div>);
     } else {
       return (
@@ -101,6 +102,7 @@ class AsyncContent extends Component {
               return <DynamicComponent data={item} {...this.props.extraProps} key={key}
                                        unMountMe={this.unmountChildHandler} idx={idx} />
             })}
+            {getLoadingSpinner(this.state.loading)}
           </div>
       );
     }

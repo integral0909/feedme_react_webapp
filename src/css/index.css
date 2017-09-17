@@ -220,6 +220,30 @@ input.form-control {
   background-color:#000;
   opacity:0.4;
 }
+.dark-overlay-gradient {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+}
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+}
+@media (min-width: 768px) {
+  .bordered-right-tablet {
+    border-right: 1px solid #D4D4D4;
+  }
+}
 @media (max-width: 767px) {
-
+  .bordered-bottom-mob {
+    border-bottom: 1px solid #d4d4d4;
+  }
+  .margin-bottom-mob {
+    margin-bottom: 20px;
+  }
+  .padded-bottom-mob {
+    padding-bottom: 20px;
+  }
 }

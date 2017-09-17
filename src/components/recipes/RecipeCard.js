@@ -70,11 +70,13 @@ class RecipeCard extends Component {
             </div>
             <div className="row card-row">
               <div className="col-xs-12">
-                {keywords.length > 0 ? <small className="text-muted">DIETARY INFO</small> : null}
+                {keywords.length ? (
+                  <small className="text-muted">DIETARY INFO</small>
+                ) : null}
                 <br />
                 <ul className="list-inline">
                   {keywords.map((item, i) => {
-                    return (<li key={i}>{item}</li>)
+                    return <li key={i}>{item}</li>
                   })}
                 </ul>
               </div>

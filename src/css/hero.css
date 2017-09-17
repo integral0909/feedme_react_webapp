@@ -11,4 +11,24 @@
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper.center-content {
+    width: 90%;
+    top: 30px;
+    transform: translateY(0%) translateX(-50%);
+  }
+  .hero-section {
+    text-align: left;
+  }
+  .hero-section h3 {
+    font-size: 25px;
+  }
+  .hero-section p {
+    font-size: 17px;
+    letter-spacing: 1px;
+    line-height: 30px;
+  }
 }

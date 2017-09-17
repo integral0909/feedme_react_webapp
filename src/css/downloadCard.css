@@ -1,0 +1,11 @@
+.download-card-img-mobile {
+  margin: 25px -25px;
+  margin-top: -25px;
+  padding: 20px;
+  padding-top: 100px;
+  color: #FFF;
+  position: relative;
+}
+.download-card-img-mobile h2 {
+  color: #fff;
+}

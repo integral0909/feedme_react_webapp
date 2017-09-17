@@ -30,6 +30,8 @@
 .search-suggestions li {
   background: #000;
   border: 1px solid #FFFFFF;
+  border-left-style: none;
+  border-right-style: none;
   border-radius: 0;
   cursor: pointer;
   text-align: left;
@@ -67,4 +69,18 @@
   margin: 0;
   border-radius: 0;
   width: 100%;
+  z-index: 2;
+  max-height: 335px;
+  overflow-y: scroll;
+}
+.suggestions-active .search-suggestions {
+  border: 1px solid #FFF;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+@media (max-width: 768px) {
+  .search-page-form {
+    text-align: left;
+    margin-top: 20px;
+  }
 }
