@@ -12,6 +12,8 @@ class CollectionCard extends Component {
       pathname: `/recipe/browse/${this.props.data.slug}`,
       state: {collection: this.props.data}
     };
+    let recipes = this.props.data.recipes;
+    let imageUrl = this.props.data.image_url || recipes[0].image_url;
     return (
         <div className="card collection-card padded hover-shadow">
           <div className="row">
@@ -20,7 +22,7 @@ class CollectionCard extends Component {
                 <Media query="(min-width: 1200px)">
                   {matches => matches ? (
                     <AspectConstrainedImage
-                      imageUrl={this.props.data.image_url}
+                      imageUrl={imageUrl}
                       alt={this.props.data.name} ratio="16:9" className="collection-card-img">
                       <div className="dark-overlay"/>
                       <h2>{this.props.data.name}</h2>
@@ -29,14 +31,14 @@ class CollectionCard extends Component {
                     <Media query="(min-width: 768px)">
                       {matches => matches ? (
                         <AspectConstrainedImage
-                          imageUrl={this.props.data.image_url}
+                          imageUrl={recipes[0].image_url}
                           alt={this.props.data.name} ratio="12:10" className="collection-card-img">
                           <div className="dark-overlay"/>
                           <h2>{this.props.data.name}</h2>
                         </AspectConstrainedImage>
                       ) : (
                         <AspectConstrainedImage
-                          imageUrl={this.props.data.image_url}
+                          imageUrl={recipes[0].image_url}
                           alt={this.props.data.name} ratio="16:9" className="collection-card-img">
                           <div className="dark-overlay"/>
                           <h2>{this.props.data.name}</h2>
@@ -51,7 +53,7 @@ class CollectionCard extends Component {
               <h3>Popular from this collection</h3>
               <Table className="collection-card-table">
                 <tbody>
-                {this.props.data.recipes.slice(0, 3).map(
+                {recipes.slice(0, 3).map(
                     (rcp) =>  <tr key={rcp.pg_id}><td>
                       <Link to={`/recipe/${rcp.pg_id}/${slugify(rcp.name, {lower: true})}`}>
                         <Glyphicon glyph="menu-right" className="pull-right" />

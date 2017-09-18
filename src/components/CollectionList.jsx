@@ -3,7 +3,7 @@ import {getLoadingSpinner} from "../utils";
 import {CollectionCard} from "./CollectionCard";
 import { Link } from 'react-router-dom';
 import {
-  Glyphicon, Col, DropdownButton, MenuItem, ButtonGroup
+  Glyphicon, DropdownButton, MenuItem, ButtonGroup
 } from 'react-bootstrap';
 import Media from "react-media";
 import 'css/collectionList.css';

@@ -62,17 +62,17 @@ class MainNav extends Component {
               <LinkContainer to="/recipe/browse">
                 <NavItem eventKey={2}>Browse</NavItem>
               </LinkContainer>
-              <NavDropdown eventKey={3} title="My Recipes" id="basic-nav-dropdown">
-                <LinkContainer to="/recipe/saved">
-                  <MenuItem eventKey={3.1}>Saved recipes</MenuItem>
-                </LinkContainer>
-                <LinkContainer to="/shopping-list">
-                  <MenuItem eventKey={3.2}>Shopping list</MenuItem>
-                </LinkContainer>
-                <LinkContainer to="/meal-plan">
-                  <MenuItem eventKey={3.3}>Meal plan</MenuItem>
-                </LinkContainer>
-              </NavDropdown>
+              <LinkContainer to="/recipe/saved">
+                <NavItem eventKey={3}>Saved recipes</NavItem>
+              </LinkContainer>
+              {/*<NavDropdown eventKey={3} title="My Recipes" id="basic-nav-dropdown">*/}
+                {/*<LinkContainer to="/shopping-list">*/}
+                  {/*<MenuItem eventKey={3.2}>Shopping list</MenuItem>*/}
+                {/*</LinkContainer>*/}
+                {/*<LinkContainer to="/meal-plan">*/}
+                  {/*<MenuItem eventKey={3.3}>Meal plan</MenuItem>*/}
+                {/*</LinkContainer>*/}
+              {/*</NavDropdown>*/}
               {loginBlock}
             </Nav>
           </Navbar.Collapse>

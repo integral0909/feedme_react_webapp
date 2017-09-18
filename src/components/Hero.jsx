@@ -11,7 +11,7 @@ class Hero extends Component {
       heroStyle['color'] = '#FFF';
     }
     if (this.props.backgroundUrl) {
-      heroStyle['background'] = `url(${this.props.backgroundUrl})`
+      heroStyle['backgroundImage'] = `url(${this.props.backgroundUrl})`
     }
     return (
         <div className={classes} style={heroStyle}>
