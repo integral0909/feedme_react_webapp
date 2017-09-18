@@ -21,9 +21,11 @@ const OpeningSection = (props) => (
         </p>
 
         <a className="button-outline"
-           href="https://itunes.apple.com/au/app/feedmee-discover-food-4-you-eat-out-give-back/id1120549992?mt=8"><img
+           href="https://itunes.apple.com/au/app/feedmee-discover-food-4-you-eat-out-give-back/id1120549992?mt=8"
+           target="_blank" rel="noopener noreferrer"><img
           src="https://cdn.feedmeeapp.com/static/images/apple-logo@2x.png" alt=""/>AppStore</a>
-        <a className="button-outline" href="http://eepurl.com/cPK-Ab"><img
+        <a className="button-outline" href="http://eepurl.com/cPK-Ab"
+           target="_blank" rel="noopener noreferrer"><img
           src="https://cdn.feedmeeapp.com/static/images/android-logo@2x.png" alt=""/>PlayStore</a>
         <div className="featured-image">
           <p>FEATURED IN</p>
@@ -46,13 +48,13 @@ const DownloadSection = (props) => {
         <h3>Download Now</h3>
         <ul className="list-unstyled">
           <li>
-            <a href="https://itunes.apple.com/au/app/feedmee-discover-food-4-you-eat-out-give-back/id1120549992?mt=8">
+            <a href="https://itunes.apple.com/au/app/feedmee-discover-food-4-you-eat-out-give-back/id1120549992?mt=8" target="_blank" rel="noopener noreferrer">
               <img src="https://cdn.feedmeeapp.com/static/images/apple-logo@2x.png" alt="AppStore icon"/>
               <p>AppStore</p>
             </a>
           </li>
           <li>
-            <a href="http://eepurl.com/cPK-Ab">
+            <a href="http://eepurl.com/cPK-Ab" target="_blank" rel="noopener noreferrer">
               <img src="https://cdn.feedmeeapp.com/static/images/android-logo@2x.png" alt="PlayStore icon"/>
               <p>PlayStore</p>
             </a>
@@ -104,38 +106,45 @@ const FeaturedPressSection = (props) => {
         <div className="featured-list">
           <ul className="list-unstyled">
             <li>
-              <a href="https://thewest.com.au/business/startup/the-perth-food-app-that-gives-back-with-meals-for-needy-ng-b88590524z">
-                <img src={westAustralianLogo} alt="The West Australian"/>
+              <a href="https://thewest.com.au/business/startup/the-perth-food-app-that-gives-back-with-meals-for-needy-ng-b88590524z"
+                 target="_blank" rel="noopener noreferrer">
+                <img src={`${process.env.REACT_APP_CDN}${westAustralianLogo}`} alt="The West Australian"/>
               </a>
             </li>
             <li>
-              <a href="http://www.watoday.com.au/wa-news/perth-developers-cashed-up-to-expand-takeaway-app-that-helps-local-charities-20170831-gy7y4g.html">
-                <img src={watodayLogo} alt="WA Today"/>
+              <a href="http://www.watoday.com.au/wa-news/perth-developers-cashed-up-to-expand-takeaway-app-that-helps-local-charities-20170831-gy7y4g.html"
+                 target="_blank" rel="noopener noreferrer">
+                <img src={`${process.env.REACT_APP_CDN}${watodayLogo}`} alt="WA Today"/>
               </a>
             </li>
             <li>
-              <a href="http://www.startupdaily.net/2017/04/feedmee-food-discovery-app-donating-charity-meal/">
+              <a href="http://www.startupdaily.net/2017/04/feedmee-food-discovery-app-donating-charity-meal/"
+                 target="_blank" rel="noopener noreferrer">
                 <img src="https://cdn.feedmeeapp.com/static/images/startupdaily-black@2x.png" alt="Startup Daily"/>
               </a>
             </li>
             <li>
-              <a href="https://rtrfm.com.au/story/feedmee-considered-a-huge-app-of-kindness/">
-                <img src={rtrfmLogo} alt="RTRFM"/>
+              <a href="https://rtrfm.com.au/story/feedmee-considered-a-huge-app-of-kindness/"
+                 target="_blank" rel="noopener noreferrer">
+                <img src={`${process.env.REACT_APP_CDN}${rtrfmLogo}`} alt="RTRFM"/>
               </a>
             </li>
             <li>
-              <a href="https://techinvest.online/feedmeeapp-award-winning-food-app-successfully-raised-250000/">
-                <img src={techinvestLogo} alt="Tech Invest"/>
+              <a href="https://techinvest.online/feedmeeapp-award-winning-food-app-successfully-raised-250000/"
+                 target="_blank" rel="noopener noreferrer">
+                <img src={`${process.env.REACT_APP_CDN}${techinvestLogo}`} alt="Tech Invest"/>
               </a>
             </li>
             <li>
-              <a href="https://www.businessnews.com.au/article/Apptech-business-of-the-week-Feedmee">
+              <a href="https://www.businessnews.com.au/article/Apptech-business-of-the-week-Feedmee"
+                 target="_blank" rel="noopener noreferrer">
                 <img src="https://cdn.feedmeeapp.com/static/images/bn-color@2x.png" alt="Business News"/>
               </a>
             </li>
             <li>
-              <a href="https://omny.fm/shows/weekend-wakeup/homegrown-feedmee">
-                <img src={sixprLogo} alt="6PR 882"/>
+              <a href="https://omny.fm/shows/weekend-wakeup/homegrown-feedmee"
+                 target="_blank" rel="noopener noreferrer">
+                <img src={`${process.env.REACT_APP_CDN}${sixprLogo}`} alt="6PR 882"/>
               </a>
             </li>
           </ul>
@@ -368,7 +377,7 @@ class ImpactEventsPreview extends Component {
           {this.state.events.filter((e) => !e.hidden).map(
             (event, k) => (
               <div className="col-sm-4 event-list" key={k}>
-                <a href={event.link}>
+                <a href={event.link} target="_blank" rel="noopener noreferrer">
                   <img src={event.image} alt={event.name}/>
                     <div className="event-desc">
                       <p>{event.name}</p>
@@ -385,6 +394,6 @@ class ImpactEventsPreview extends Component {
 }
 
 export {
-  OpeningSection, DownloadSection, MealsDonatedSection, ImpactEventsPreview,
+  OpeningSection, MealsDonatedSection, ImpactEventsPreview,
   FeaturedPressSection, BenefitsSection, TeamSection, DrivingFeedmeeSection
 }

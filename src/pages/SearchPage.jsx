@@ -57,7 +57,7 @@ class SearchPage extends Component {
     let suggestionClass = this.state.suggestions.length ? ' suggestions-active' : '';
     let formClasses = `search-page-form${suggestionClass}`;
     return (
-      <Hero centered overlay backgroundUrl={searchBg} style={{marginBottom: '-60px'}}
+      <Hero centered overlay backgroundUrl={`${process.env.REACT_APP_CDN}${searchBg}`} style={{marginBottom: '-60px'}}
             className="text-center">
         <h3>What are you looking for?</h3>
         {this.state.ingredients.length ? (

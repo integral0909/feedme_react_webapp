@@ -64,7 +64,7 @@ class Signup extends AbstractForm {
       content = (
         <div className={this.props.className} style={this.props.style}>
           <h4>Welcome to the Feedmee movement</h4>
-          <img src={helpHappy} alt="Happy heart and food delivered"/>
+          <img src={`${helpHappy}`} alt="Happy heart and food delivered"/>
           <p>Every time you use Feedmee to find food, you help feed someone in need. Simply by signing up, you are helping us to achieve our mission to end world hunger.</p>
           <Link to="/impact" className="btn btn-pink">How it works</Link>
         </div>

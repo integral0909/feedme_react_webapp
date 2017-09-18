@@ -42,7 +42,7 @@ class DownloadCard extends Component {
       <div className="row">
         <div className="col-sm-7">
           <AspectConstrainedImage
-            imageUrl={downloadBanner}
+            imageUrl={`${process.env.REACT_APP_CDN}${downloadBanner}`}
             alt="Download Feedmee for iOS"
             style={{margin: '-25px', marginRight: '0px'}} ratio="15:9"/>
         </div>
@@ -59,7 +59,7 @@ class DownloadCard extends Component {
     return (
       <div className="row">
         <div className="col-xs-12">
-          <AutocroppedImage src={downloadBanner}
+          <AutocroppedImage src={`${process.env.REACT_APP_CDN}${downloadBanner}`}
                             alt="Download Feedmee app"
                             className="download-card-img-mobile">
             <div className="content-wrapper text-center">
