@@ -93,7 +93,9 @@ class LoginModal extends Component {
     }
     return (
       <div>
-        <Modal show={this.props.showModal} className="col-sm-3" onHide={this.closeModal}>
+        <Modal show={this.props.showModal}
+               className="col-sm-5 col-md-4 col-lg-3"
+               onHide={this.closeModal}>
           {body}
         </Modal>
       </div>

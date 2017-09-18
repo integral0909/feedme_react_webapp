@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Button } from 'react-bootstrap';
+import {Navbar, Nav, NavItem, MenuItem, NavDropdown, Button, Glyphicon} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import logo from '../assets/feedmee_logo.png';
 import '../css/MainNavbar.css'
 import { LoginModal } from './LoginModal'
 import {LogoutModal} from "./LogoutModal";
 import {Link} from "react-router-dom";
+import {ProfilePicture} from "./ProfilePicture";
 
 
 class MainNav extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {loginModal: false, logoutModal: false}
   }
   toggleModal = (modalName) => {
@@ -31,7 +32,7 @@ class MainNav extends Component {
       loginBlock = (
         <NavDropdown
             eventKey={4}
-            title={this.props.auth.user.displayName || this.props.auth.user.email}
+            title={<ProfilePicture user={this.props.auth.user}/>}
             id="basic-nav-dropdown">
           <MenuItem eventKey={4.1} onClick={() => this.toggleModal('logoutModal')}>
             Logout
@@ -48,7 +49,7 @@ class MainNav extends Component {
             <Navbar.Brand>
               <Link to="/"><img src={logo} alt="Feedmee" /></Link>
             </Navbar.Brand>
-            <Navbar.Toggle />
+            <Navbar.Toggle className="visible-xs"><Glyphicon glyph="menu-down"/></Navbar.Toggle>
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>

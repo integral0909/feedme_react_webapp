@@ -7,6 +7,7 @@ import {AspectConstrainedImage} from "components/AspectConstrainedImage";
 import {SourceLink} from "components/SourceLink";
 import slugify from 'slugify';
 import {trimNearestWord} from "utils";
+import {Media} from "react-media";
 
 
 class RecipeCard extends Component {
@@ -37,12 +38,31 @@ class RecipeCard extends Component {
         <div className="row">
           <div className="col-sm-6 image-column">
             <Link to={recipeLocation}>
-              <AspectConstrainedImage
-                  imageUrl={this.props.data.image_url}
-                  alt={this.props.data.name}
-                  ratio="14:11"
-                  style={{marginRight: 0}}
-              />
+              <Media query="(min-width: 1200px)">
+                {matches => matches ? (
+                  <AspectConstrainedImage
+                      imageUrl={this.props.data.image_url}
+                      alt={this.props.data.name}
+                      ratio="14:11"
+                  />
+                ) : (
+                  <Media query="(min-width: 768px)">
+                    {matches => matches ? (
+                      <AspectConstrainedImage
+                        imageUrl={this.props.data.image_url}
+                        alt={this.props.data.name}
+                        ratio="11:11"
+                      />
+                    ) : (
+                      <AspectConstrainedImage
+                        imageUrl={this.props.data.image_url}
+                        alt={this.props.data.name}
+                        ratio="16:10"
+                      />
+                    )}
+                  </Media>
+                )}
+              </Media>
             </Link>
           </div>
           <div className="col-sm-6 detail-column">

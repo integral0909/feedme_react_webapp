@@ -66,6 +66,9 @@
   bottom: 20px;
   left: 15px;
 }
+.card.recipe-card .img-aspect {
+  margin-right: 0;
+}
 @media (max-width: 768px) {
   .recipe-card > .row > .detail-column {
     padding-left: 30px;
@@ -81,5 +84,12 @@
   .card-row .col-xs-3 {
     padding-left: 11px;
     padding-right: 10px;
+  }
+  .card.recipe-card .img-aspect {
+    margin-right: -25px;
+  }
+  .navbar-form {
+    margin-left: 0;
+    margin-right: 0;
   }
 }

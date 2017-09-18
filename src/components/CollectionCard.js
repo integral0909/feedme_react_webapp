@@ -4,6 +4,7 @@ import {AspectConstrainedImage} from "./AspectConstrainedImage";
 import {Glyphicon, Table} from 'react-bootstrap';
 import slugify from "slugify";
 import {trimNearestWord} from "../utils";
+import {Media} from "react-media";
 
 class CollectionCard extends Component {
   render() {
@@ -16,23 +17,46 @@ class CollectionCard extends Component {
           <div className="row">
             <div className="col-sm-7">
               <Link to={collectionLocation}>
-                <AspectConstrainedImage
-                    imageUrl={this.props.data.image_url}
-                    alt={this.props.data.name} ratio="16:9">
-                  <div className="dark-overlay"/>
-                  <h2>{this.props.data.name}</h2>
-                </AspectConstrainedImage>
+                <Media query="(min-width: 1200px)">
+                  {matches => matches ? (
+                    <AspectConstrainedImage
+                      imageUrl={this.props.data.image_url}
+                      alt={this.props.data.name} ratio="16:9" className="collection-card-img">
+                      <div className="dark-overlay"/>
+                      <h2>{this.props.data.name}</h2>
+                    </AspectConstrainedImage>
+                  ) : (
+                    <Media query="(min-width: 768px)">
+                      {matches => matches ? (
+                        <AspectConstrainedImage
+                          imageUrl={this.props.data.image_url}
+                          alt={this.props.data.name} ratio="12:10" className="collection-card-img">
+                          <div className="dark-overlay"/>
+                          <h2>{this.props.data.name}</h2>
+                        </AspectConstrainedImage>
+                      ) : (
+                        <AspectConstrainedImage
+                          imageUrl={this.props.data.image_url}
+                          alt={this.props.data.name} ratio="16:9" className="collection-card-img">
+                          <div className="dark-overlay"/>
+                          <h2>{this.props.data.name}</h2>
+                        </AspectConstrainedImage>
+                      )}
+                    </Media>
+                  )}
+                </Media>
               </Link>
             </div>
             <div className="col-sm-5">
               <h3>Popular from this collection</h3>
-              <Table>
+              <Table className="collection-card-table">
                 <tbody>
                 {this.props.data.recipes.slice(0, 3).map(
                     (rcp) =>  <tr key={rcp.pg_id}><td>
                       <Link to={`/recipe/${rcp.pg_id}/${slugify(rcp.name, {lower: true})}`}>
-                        {trimNearestWord(rcp.name, 45)}
                         <Glyphicon glyph="menu-right" className="pull-right" />
+                        <div>{trimNearestWord(rcp.name, 45)}</div>
+
                       </Link>
                     </td></tr>
 

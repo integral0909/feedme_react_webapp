@@ -15,7 +15,7 @@ class SearchResultsPage extends Component {
       <div className="container">
         <h1>Search results</h1>
         <div className="row">
-          <div className="col-sm-9">
+          <div className="col-md-9">
             <AsyncContent
               auth={this.props.auth}
               host={process.env.REACT_APP_HOST}

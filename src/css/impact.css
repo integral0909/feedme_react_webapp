@@ -970,6 +970,9 @@ a:focus {
   margin: 0;
 }
 
+.impact-icon {
+  max-height: 100px;
+}
 
 /*Contact Form 7*/
 
@@ -1370,12 +1373,15 @@ input.wpcf7-not-valid,
 }
 
 @media (max-width: 767px) {
+  .impact-donation-explainer {
+    margin-bottom: 50px;
+  }
   /*Section Opening*/
   .section-opening {
     min-height: 335px
   }
   .section-opening:before {
-    height: 485px;
+    height: 585px;
   }
   .opening-image {
     margin-top: 30px;
@@ -1416,7 +1422,7 @@ input.wpcf7-not-valid,
   }
   /*Section Hiw*/
   .section-hiw {
-    padding-top: 60px;
+    padding-top: 40px;
   }
   .hiw-desc {
     margin-top: 0;
@@ -1533,6 +1539,9 @@ input.wpcf7-not-valid,
 }
 
 @media (max-width: 480px) {
+  .section-opening:before {
+    height: 630px;
+  }
   /*  General*/
   h1 {
     font-size: 28px;
@@ -1546,7 +1555,7 @@ input.wpcf7-not-valid,
     font-size: 21px;
   }
   .button-outline {
-    margin-right: 0;
+    margin-right: 6px;
     margin-bottom: 8px;
   }
   .button-pink {

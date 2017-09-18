@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import {get} from 'services/ApiService';
 import {Grid, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import watodayLogo from 'assets/press_logos/watoday_logo.png';
+import sixprLogo from 'assets/press_logos/6pr_logo.png';
+import rtrfmLogo from 'assets/press_logos/rtrfm_logo.png';
+import westAustralianLogo from 'assets/press_logos/westaustralian_logo.png';
+import techinvestLogo from 'assets/press_logos/techinvest_logo.png';
+
 
 const OpeningSection = (props) => (
   <div className="section-opening">
@@ -95,25 +101,44 @@ const FeaturedPressSection = (props) => {
     <div className="section-featured">
       <div className="container">
         <h3>Featured in</h3>
-        <div className="featured-list hidden-sm hidden-xs">
-          <ul>
-            <li><img src="https://cdn.feedmeeapp.com/static/images/startupdaily-black@2x.png" alt="Startup Daily"/></li>
-            <li><img src="https://cdn.feedmeeapp.com/static/images/yahoo-purple@2x.png" alt="Yahoo News"/></li>
-            <li><img src="https://cdn.feedmeeapp.com/static/images/hit-92.9@2x.png" alt="Hit 92.9"/></li>
-            <li><img src="https://cdn.feedmeeapp.com/static/images/watoday@2x.png" alt="WA Today"/></li>
-            <li><img src="https://cdn.feedmeeapp.com/static/images/bn-color@2x.png" alt="Business News"/></li>
-            <li><img src="https://cdn.feedmeeapp.com/static/images/ozawards@2x.png" alt="OzApp Awards"/></li>
-            <li><img src="https://cdn.feedmeeapp.com/static/images/business-wire@2x.png" alt="Business Wire"/></li>
+        <div className="featured-list">
+          <ul className="list-unstyled">
+            <li>
+              <a href="https://thewest.com.au/business/startup/the-perth-food-app-that-gives-back-with-meals-for-needy-ng-b88590524z">
+                <img src={westAustralianLogo} alt="The West Australian"/>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.watoday.com.au/wa-news/perth-developers-cashed-up-to-expand-takeaway-app-that-helps-local-charities-20170831-gy7y4g.html">
+                <img src={watodayLogo} alt="WA Today"/>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.startupdaily.net/2017/04/feedmee-food-discovery-app-donating-charity-meal/">
+                <img src="https://cdn.feedmeeapp.com/static/images/startupdaily-black@2x.png" alt="Startup Daily"/>
+              </a>
+            </li>
+            <li>
+              <a href="https://rtrfm.com.au/story/feedmee-considered-a-huge-app-of-kindness/">
+                <img src={rtrfmLogo} alt="RTRFM"/>
+              </a>
+            </li>
+            <li>
+              <a href="https://techinvest.online/feedmeeapp-award-winning-food-app-successfully-raised-250000/">
+                <img src={techinvestLogo} alt="Tech Invest"/>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.businessnews.com.au/article/Apptech-business-of-the-week-Feedmee">
+                <img src="https://cdn.feedmeeapp.com/static/images/bn-color@2x.png" alt="Business News"/>
+              </a>
+            </li>
+            <li>
+              <a href="https://omny.fm/shows/weekend-wakeup/homegrown-feedmee">
+                <img src={sixprLogo} alt="6PR 882"/>
+              </a>
+            </li>
           </ul>
-        </div>
-        <div className="featured-list-mobile visible-sm visible-xs">
-          <div className="featured-list-image"><img src="https://cdn.feedmeeapp.com/static/images/startupdaily-black@2x.png" alt="Startup Daily"/></div>
-          <div className="featured-list-image"><img src="https://cdn.feedmeeapp.com/static/images/yahoo-purple@2x.png" alt="Yahoo News"/></div>
-          <div className="featured-list-image"><img src="https://cdn.feedmeeapp.com/static/images/hit-92.9@2x.png" alt="Hit 92.9"/></div>
-          <div className="featured-list-image"><img src="https://cdn.feedmeeapp.com/static/images/watoday@2x.png" alt="WA Today"/></div>
-          <div className="featured-list-image"><img src="https://cdn.feedmeeapp.com/static/images/bn-color@2x.png" alt="Business News"/></div>
-          <div className="featured-list-image"><img src="https://cdn.feedmeeapp.com/static/images/ozawards@2x.png" alt="OzApp Awards"/></div>
-          <div className="featured-list-image"><img src="https://cdn.feedmeeapp.com/static/images/business-wire@2x.png" alt="Business Wire"/></div>
         </div>
       </div>
     </div>
@@ -272,6 +297,7 @@ const DrivingFeedmeeSection = (props) => {
       <Grid>
         <Col sm={6}>
           <h2 className="pink">The driving force behind Feedmee</h2>
+          <img src={props.imageTop} alt={props.imageToplt} className="visible-xs"/>
           <h4>Why did we start Feedmee</h4>
           <p>
             We want to stop world hunger with one simple idea: What if every time you eat out, you could help someone in need eat, too. Many people are unaware that the world produces enough food to feed everyone, but one in nine people in the world still goes hungry.
@@ -290,7 +316,7 @@ const DrivingFeedmeeSection = (props) => {
             Tyler is passionate about fighting the hunger problems that many children face every year. He recalls numerous times in his youth, going to school hungry without food and wishing he had a packed lunch like the other kids in the class.
           </p>
         </Col>
-        <Col sm={5} smOffset={1}>
+        <Col sm={5} smOffset={1} className="hidden-xs">
           <img src={props.imageTop} alt={props.imageToplt}/>
           <img src={props.imageBottom} alt={props.imageBottomAlt}/>
         </Col>

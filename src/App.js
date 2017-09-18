@@ -3,17 +3,18 @@ import {
   BrowserRouter as Router,
   Route, Switch
 } from 'react-router-dom';
-import { MainNav } from './components/MainNav';
+import { MainNav } from 'components/MainNav';
 import {
   ImpactPage, SearchPage
-} from "./pages/MainPages";
+} from "pages/MainPages";
 import { initializeApp } from 'firebase';
-import {RecipeRoutes} from "./components/recipes/RecipesRoutes";
-import {Footer} from "./components/Footer";
+import {RecipeRoutes} from "components/recipes/RecipesRoutes";
+import {Footer} from "components/Footer";
 import {NoMatch} from "pages/NoMatch";
-import {DownloadBar} from "./components/DownloadBar";
-import {AboutPage} from "./pages/AboutPage";
-import {ForgotPasswordPage} from "./pages/ForgotPasswordPage";
+import {DownloadBar} from "components/DownloadBar";
+import {AboutPage} from "pages/AboutPage";
+import {ForgotPasswordPage} from "pages/ForgotPasswordPage";
+import ScrollToTop from "components/ScrollToTop";
 
 class App extends Component {
   constructor(props) {
@@ -51,7 +52,9 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <ScrollToTop>
         <div className="Feedmee-App">
+
           <MainNav auth={this.state.auth} />
           <DownloadBar/>
           <Switch>
@@ -68,6 +71,7 @@ class App extends Component {
           </Switch>
           <Footer/>
         </div>
+        </ScrollToTop>
       </Router>
     );
   }
