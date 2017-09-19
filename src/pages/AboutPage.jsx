@@ -12,7 +12,7 @@ class AboutPage extends Component {
         <OpeningSection/>
         <div className="section-help" style={{backgroundColor: '#FFF'}}>
           <div className="container">
-            <img src={happyPie} alt="Happy pie" />
+            <img src={`${process.env.REACT_APP_CDN}${happyPie}`} alt="Happy pie" />
             <h2 className="pink">We are taking the decision making out of eating</h2>
             <p style={{fontSize: '18px', color: '#444'}}>
               So that you can spend <strong>more time eating, less time thinking.</strong><br/>

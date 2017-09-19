@@ -114,7 +114,7 @@ const FeaturedPressSection = (props) => {
             <li>
               <a href="http://www.watoday.com.au/wa-news/perth-developers-cashed-up-to-expand-takeaway-app-that-helps-local-charities-20170831-gy7y4g.html"
                  target="_blank" rel="noopener noreferrer">
-                <img src={`${process.env.REACT_APP_CDN}${watodayLogo}`} alt="WA Today"/>
+                <img src={`${watodayLogo}`} alt="WA Today"/>
               </a>
             </li>
             <li>
@@ -144,7 +144,7 @@ const FeaturedPressSection = (props) => {
             <li>
               <a href="https://omny.fm/shows/weekend-wakeup/homegrown-feedmee"
                  target="_blank" rel="noopener noreferrer">
-                <img src={`${process.env.REACT_APP_CDN}${sixprLogo}`} alt="6PR 882"/>
+                <img src={`${sixprLogo}`} alt="6PR 882"/>
               </a>
             </li>
           </ul>
@@ -169,7 +169,7 @@ class MealsDonatedSection extends Component {
   }
   render() {
     return (
-      <div className="section-help" style={{paddingBottom: 0}}>
+      <div className="section-help" id="section-donated">
         <Grid className="card card-bordered">
           <Col sm={5}>
             <img src="https://cdn.feedmeeapp.com/static/images/box-hearth@2x.png"
@@ -373,7 +373,7 @@ class ImpactEventsPreview extends Component {
       <div className="section-events">
         <div className="container">
           <h2 className="pink">Impact Events</h2>
-          <h4>We run impact events that aim to fight hunger, one meal at a time.</h4>
+          <h4>We run impact events that aim to fight hunger.</h4>
           {this.state.events.filter((e) => !e.hidden).map(
             (event, k) => (
               <div className="col-sm-4 event-list" key={k}>

@@ -1,5 +1,6 @@
 .ingredient-list > li {
   padding: 18px;
+  cursor: pointer;
 }
 .ingredient-list > li > i {
   height: 25px;

@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import 'css/Cards.css';
 import {secondsToDisplayTime} from "utils";
 import {RecipeToolbar} from "./RecipeToolbar";
-import {AspectConstrainedImage} from "components/AspectConstrainedImage";
 import {SourceLink} from "components/SourceLink";
 import slugify from 'slugify';
 import {trimNearestWord} from "utils";
-import {Media} from "react-media";
+import {AutocroppedImage} from "../AutocroppedImage";
 
 
 class RecipeCard extends Component {
@@ -28,6 +27,7 @@ class RecipeCard extends Component {
     let cookTime = secondsToDisplayTime(this.props.data.cook_time_seconds);
     let recipeName = this.props.data.name;
     let keywords = this.props.data.keywords;
+    const columnStyle = keywords.length ? {height: '310px'} : {height: '250px'};
     let recipeLocation = {
       pathname: `/recipe/${this.props.data.pg_id}/${slugify(recipeName, {lower: true})}`,
       state: {recipe: this.props.data}
@@ -36,36 +36,15 @@ class RecipeCard extends Component {
     return (
       <div className={`card recipe-card hover-shadow fade ${this.state.hidden ? 'fade-out' : ''}`}>
         <div className="row">
-          <div className="col-sm-6 image-column">
+          <div className="col-sm-6 image-column" style={columnStyle}>
             <Link to={recipeLocation}>
-              <Media query="(min-width: 1200px)">
-                {matches => matches ? (
-                  <AspectConstrainedImage
-                      imageUrl={this.props.data.image_url}
-                      alt={this.props.data.name}
-                      ratio="14:11"
-                  />
-                ) : (
-                  <Media query="(min-width: 768px)">
-                    {matches => matches ? (
-                      <AspectConstrainedImage
-                        imageUrl={this.props.data.image_url}
-                        alt={this.props.data.name}
-                        ratio="11:11"
-                      />
-                    ) : (
-                      <AspectConstrainedImage
-                        imageUrl={this.props.data.image_url}
-                        alt={this.props.data.name}
-                        ratio="16:10"
-                      />
-                    )}
-                  </Media>
-                )}
-              </Media>
+              <AutocroppedImage
+                  style={columnStyle}
+                  src={this.props.data.image_url}
+                  alt={this.props.data.name} />
             </Link>
           </div>
-          <div className="col-sm-6 detail-column">
+          <div className="col-sm-6 detail-column" style={columnStyle}>
             <Link to={recipeLocation}>
               <h2 className="pink" title={recipeName}>{trimNearestWord(recipeName, 50)}</h2>
             </Link>
@@ -88,19 +67,19 @@ class RecipeCard extends Component {
                 <small className="text-muted">DIFFICULTY</small>
               </div>
             </div>
-            <div className="row card-row">
-              <div className="col-xs-12">
                 {keywords.length ? (
-                  <small className="text-muted">DIETARY INFO</small>
+                  <div className="row card-row">
+                    <div className="col-xs-12">
+                      <small className="text-muted">DIETARY INFO</small>
+                      <br />
+                      <ul className="list-inline">
+                        {keywords.map((item, i) => {
+                          return <li key={i}>{item}</li>
+                        })}
+                      </ul>
+                    </div>
+                  </div>
                 ) : null}
-                <br />
-                <ul className="list-inline">
-                  {keywords.map((item, i) => {
-                    return <li key={i}>{item}</li>
-                  })}
-                </ul>
-              </div>
-            </div>
             <div className="row card-row-sticky-bottom">
               <div className="col-xs-12">
                 <RecipeToolbar url={shareUrl} pg_id={this.props.data.pg_id}

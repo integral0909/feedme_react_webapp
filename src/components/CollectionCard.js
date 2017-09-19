@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {AspectConstrainedImage} from "./AspectConstrainedImage";
 import {Glyphicon, Table} from 'react-bootstrap';
 import slugify from "slugify";
-import {trimNearestWord} from "../utils";
 import {Media} from "react-media";
 
 class CollectionCard extends Component {
@@ -53,17 +52,15 @@ class CollectionCard extends Component {
               <h3>Popular from this collection</h3>
               <Table className="collection-card-table">
                 <tbody>
-                {recipes.slice(0, 3).map(
-                    (rcp) =>  <tr key={rcp.pg_id}><td>
-                      <Link to={`/recipe/${rcp.pg_id}/${slugify(rcp.name, {lower: true})}`}>
-                        <Glyphicon glyph="menu-right" className="pull-right" />
-                        <div>{trimNearestWord(rcp.name, 45)}</div>
+                {recipes.slice(0, 3).map(rcp =>  (
+                  <tr key={rcp.pg_id}><td>
+                    <Link to={`/recipe/${rcp.pg_id}/${slugify(rcp.name, {lower: true})}`}>
+                      <Glyphicon glyph="menu-right" className="pull-right" />
+                      <div className="recipe-name">{rcp.name}</div>
 
-                      </Link>
-                    </td></tr>
-
-                )}
-                <tr><td></td></tr>
+                    </Link>
+                  </td></tr>
+                ))}
                 </tbody>
               </Table>
               <Link to={collectionLocation} className="text-center center-block">

@@ -34,6 +34,7 @@ class CollectionList extends Component {
                                              className="pull-right"/>
                                 </div>
                               }
+                              bsSize="large"
                               noCaret
                               id="all-collections-dropdown">
                 {this.renderCollectionList(MenuItem)}

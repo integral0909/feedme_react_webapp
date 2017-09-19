@@ -11,7 +11,7 @@ class NoMatch extends Component {
         <Row>
           <Col sm={12} className="text-center">
             <div className="alert-circle">
-              <h1>4<img src={egg04} alt="0"/>4</h1>
+              <h1>4<img src={`${process.env.REACT_APP_CDN}${egg04}`} alt="0"/>4</h1>
             </div>
 
             <h1 className="pink">Eggscuse us!</h1>

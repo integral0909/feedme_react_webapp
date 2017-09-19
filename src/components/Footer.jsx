@@ -23,7 +23,7 @@ class Footer extends Component {
                   <h4>Recipes</h4>
                   <ul className="list-unstyled">
                     <li><Link to="/recipe/search">Search recipes</Link></li>
-                    <li><Link to="/recipe/browse">Browse recipes</Link></li>
+                    <li><Link to="/recipe/browse">Browse collections</Link></li>
                     <li><Link to="/recipe/saved">Saved recipes</Link></li>
                   </ul>
                 </div>

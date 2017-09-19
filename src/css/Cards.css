@@ -77,6 +77,9 @@
   .recipe-card .card-row-sticky-bottom {
     left: 30px;
   }
+  .recipe-card h2 {
+    font-size: 22px;
+  }
   .card.padded {
     padding: 18px;
   }
@@ -85,11 +88,22 @@
     padding-left: 11px;
     padding-right: 10px;
   }
-  .card.recipe-card .img-aspect {
-    margin-right: -25px;
+  .card.recipe-card .img-aspect,
+  .card.recipe-card .img-autocropped {
+    margin-right: -15px;
   }
   .navbar-form {
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-card h2 {
+    font-size: 20px;
+  }
+  .card-row .col-xs-3 {
+    padding-left: 10px;
+    padding-right: 9px;
   }
 }

@@ -6,7 +6,7 @@ class RecipeBrowsePage extends Component {
   render() {
     return (
         <div className="container">
-          <h1>Browse Recipes</h1>
+          <h1>Browse collections</h1>
           <AsyncContent
               auth={this.props.auth}
               host={process.env.REACT_APP_HOST}

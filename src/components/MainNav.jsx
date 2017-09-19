@@ -60,7 +60,7 @@ class MainNav extends Component {
                 <NavItem eventKey={2}>Search</NavItem>
               </LinkContainer>
               <LinkContainer to="/recipe/browse">
-                <NavItem eventKey={2}>Browse</NavItem>
+                <NavItem eventKey={2}>Collections</NavItem>
               </LinkContainer>
               <LinkContainer to="/recipe/saved">
                 <NavItem eventKey={3}>Saved recipes</NavItem>

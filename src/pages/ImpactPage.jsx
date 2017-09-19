@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import {Grid, Col} from 'react-bootstrap';
 import 'css/impact.css';
 import {
-  DrivingFeedmeeSection, FeaturedPressSection, ImpactEventsPreview,
+  FeaturedPressSection, ImpactEventsPreview,
   MealsDonatedSection, OpeningSection
 } from "./partials/StaticPartials";
 import feeIcon from 'assets/fee.svg';
 import findIcon from 'assets/find.svg';
 import donateIcon from 'assets/donate.svg';
-import teamPhoto from 'assets/teamphoto.jpeg';
-import tylerPitch from 'assets/tyler_pitch.jpg';
 
 class ImpactPage extends Component {
   render() {
@@ -38,11 +36,8 @@ class ImpactPage extends Component {
             </Col>
           </Grid>
         </div>
-        <DrivingFeedmeeSection
-          imageTop={`${process.env.REACT_APP_CDN}${teamPhoto}`}  imageTopAlt="The Feedmee team"
-          imageBottom={`${process.env.REACT_APP_CDN}${tylerPitch}`} imageBottomAlt="Tyler Spooner" />
-        <ImpactEventsPreview/>
         <MealsDonatedSection/>
+        <ImpactEventsPreview/>
         <FeaturedPressSection/>
       </main>
     )

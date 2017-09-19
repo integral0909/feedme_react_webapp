@@ -3,8 +3,7 @@ import React, {Component} from 'react';
 class AutocroppedImage extends Component {
   buildDivStyle() {
     const imgUrl = this.props.src;
-    let divStyle = this.props.style || {};
-    divStyle['backgroundImage'] = `url(${imgUrl})`;
+    let divStyle = {...this.props.style, 'backgroundImage': `url(${imgUrl}`};
     return divStyle
   }
   render() {
