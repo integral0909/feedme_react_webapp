@@ -29,6 +29,7 @@
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-mustache-render": "^1.9.2"
   }
 }

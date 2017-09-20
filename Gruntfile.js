@@ -1,11 +1,11 @@
 module.exports = function (grunt) {
-  let configPath = grunt.option('config') || 'django_deploy_config.json';
-  let config = grunt.file.readJSON(configPath);
+  const configPath = grunt.option('config') || 'django_deploy_config.json';
+  const config = grunt.file.readJSON(configPath);
   let assetData = grunt.file.readJSON(config.assetManifest);
-  let assetDataToClean = grunt.file.readJSON(config.assetManifest);
-  grunt.log.write('Reading from', configPath, '...\n');
-  grunt.log.write('Config is', config, '\n');
-  grunt.log.write('Asset data is', assetData, '\n');
+
+  let htmlMinFiles = {};
+  htmlMinFiles[config.indexDestination] = 'indexTemp.html';
+  const hbAttrWrap = /\{\{[^}]+\}\}/;
 
   let cleanArr = [];
   for (let k in assetData) {
@@ -24,8 +24,14 @@ module.exports = function (grunt) {
       delete assetData[k];
     }
   }
+  cleanArr.push('indexTemp.html');
 
-  grunt.log.write('Cleaning arr:\n', cleanArr, '\n');
+  if (grunt.option('verbose')) {
+    grunt.log.write('Reading from', configPath, '...\n');
+    grunt.log.write('Config is', config, '\n');
+    grunt.log.write('Asset data is', assetData, '\n');
+    grunt.log.write('Cleaning arr:\n', cleanArr, '\n');
+  }
 
   grunt.initConfig({
     mustache_render: {
@@ -34,7 +40,7 @@ module.exports = function (grunt) {
           {
             data: assetData,
             template: config.indexTemplate,
-            dest: config.indexDestination
+            dest: 'indexTemp.html'
           }
         ]
       }
@@ -47,6 +53,18 @@ module.exports = function (grunt) {
         dest: config.staticDest
       }
     },
+    htmlmin: {
+      deploy: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true,
+          ignoreCustomFragments: [hbAttrWrap],
+          customAttrAssign: [hbAttrWrap],
+          minifyJS: true
+        },
+        files: htmlMinFiles
+      }
+    },
     clean: {
       options: {
         force: true
@@ -57,6 +75,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-mustache-render');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
-  grunt.registerTask('default', ['copy', 'mustache_render', 'clean']);
+  grunt.registerTask('default', ['copy', 'mustache_render', 'htmlmin', 'clean']);
 }
