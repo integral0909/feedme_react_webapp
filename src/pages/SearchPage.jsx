@@ -71,7 +71,7 @@ class SearchPage extends Component {
             ))}
           </ul>
         ) : (
-          <p><strong>Enter items that are in your fridge</strong></p>
+          <p><strong>Enter items that are in your fridge and we will find you great recipes</strong></p>
         )}
         <form onSubmit={this.handleSubmit} className={formClasses}>
           <FormGroup controlId="ingredient-search">
