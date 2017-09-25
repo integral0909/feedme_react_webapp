@@ -41,30 +41,6 @@ const OpeningSection = (props) => (
   </div>
 );
 
-const DownloadSection = (props) => {
-  return (
-    <div className="section-download">
-      <div className="container">
-        <h3>Download Now</h3>
-        <ul className="list-unstyled">
-          <li>
-            <a href="https://itunes.apple.com/au/app/feedmee-discover-food-4-you-eat-out-give-back/id1120549992?mt=8" target="_blank" rel="noopener noreferrer">
-              <img src="https://cdn.feedmeeapp.com/static/images/apple-logo@2x.png" alt="AppStore icon"/>
-              <p>AppStore</p>
-            </a>
-          </li>
-          <li>
-            <a href="http://eepurl.com/cPK-Ab" target="_blank" rel="noopener noreferrer">
-              <img src="https://cdn.feedmeeapp.com/static/images/android-logo@2x.png" alt="PlayStore icon"/>
-              <p>PlayStore</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  )
-}
-
 const BenefitsSection = (props) => {
   return (
     <div className="section-benefits">

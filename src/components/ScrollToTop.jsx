@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import React, {Component} from 'react';
 import { withRouter } from 'react-router';
 
 class ScrollToTop extends Component {
@@ -9,7 +9,7 @@ class ScrollToTop extends Component {
   }
 
   render() {
-    return this.props.children
+    return <div>{this.props.children}</div>
   }
 }
 

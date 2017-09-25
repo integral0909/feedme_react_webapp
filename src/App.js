@@ -15,6 +15,12 @@ import {DownloadBar} from "components/DownloadBar";
 import {AboutPage} from "pages/AboutPage";
 import {ForgotPasswordPage} from "pages/ForgotPasswordPage";
 import ScrollToTop from "components/ScrollToTop";
+import {Analytics} from "components/Analytics";
+import ReactGA from "react-ga";
+
+if (process.env.NODE_ENV === 'production') {
+  ReactGA.initialize('UA-73297120-1');
+}
 
 class App extends Component {
   constructor(props) {
@@ -54,7 +60,7 @@ class App extends Component {
       <Router>
         <ScrollToTop>
         <div className="Feedmee-App">
-
+          <Route path="/" component={Analytics}/>
           <MainNav auth={this.state.auth} />
           <DownloadBar/>
           <Switch>
